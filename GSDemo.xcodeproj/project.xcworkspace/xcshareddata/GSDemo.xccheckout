@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>92D76091-C7C6-4DDD-AD58-9CB4FDF3B3E8</string>
+	<key>IDESourceControlProjectName</key>
+	<string>GSDemo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>049F1851522FC74622ECD96DA04B35A4D2BBF313</key>
+		<string>djigit11-rd.dji.com:SDKDemo/GSDemo-Part2.git</string>
+		<key>5E95AB7060621BC5DE0E53A98C2A1911B76E6475</key>
+		<string>github.com:DJI-Mobile-SDK/iOS-GSDemo-Part2.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>GSDemo.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>049F1851522FC74622ECD96DA04B35A4D2BBF313</key>
+		<string>../../../GSDemo-Part2</string>
+		<key>5E95AB7060621BC5DE0E53A98C2A1911B76E6475</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:DJI-Mobile-SDK/iOS-GSDemo-Part2.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>5E95AB7060621BC5DE0E53A98C2A1911B76E6475</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>049F1851522FC74622ECD96DA04B35A4D2BBF313</string>
+			<key>IDESourceControlWCCName</key>
+			<string>GSDemo-Part2</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5E95AB7060621BC5DE0E53A98C2A1911B76E6475</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iOS-GSDemo-Part2</string>
+		</dict>
+	</array>
+</dict>
+</plist>
