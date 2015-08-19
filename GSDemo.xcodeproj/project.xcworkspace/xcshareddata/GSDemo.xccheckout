@@ -12,6 +12,8 @@
 	<dict>
 		<key>049F1851522FC74622ECD96DA04B35A4D2BBF313</key>
 		<string>djigit11-rd.dji.com:SDKDemo/GSDemo-Part2.git</string>
+		<key>1C27C03A972FDE043626CF8F280C89E97069D293</key>
+		<string>github.com:DJI-Mobile-SDK/iOS-GSDemo.git</string>
 		<key>5E95AB7060621BC5DE0E53A98C2A1911B76E6475</key>
 		<string>github.com:DJI-Mobile-SDK/iOS-GSDemo-Part2.git</string>
 	</dict>
@@ -21,15 +23,17 @@
 	<dict>
 		<key>049F1851522FC74622ECD96DA04B35A4D2BBF313</key>
 		<string>../../../GSDemo-Part2</string>
-		<key>5E95AB7060621BC5DE0E53A98C2A1911B76E6475</key>
+		<key>1C27C03A972FDE043626CF8F280C89E97069D293</key>
 		<string>../..</string>
+		<key>5E95AB7060621BC5DE0E53A98C2A1911B76E6475</key>
+		<string>../../../iOS-GSDemo-Part2</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>github.com:DJI-Mobile-SDK/iOS-GSDemo-Part2.git</string>
+	<string>github.com:DJI-Mobile-SDK/iOS-GSDemo.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>5E95AB7060621BC5DE0E53A98C2A1911B76E6475</string>
+	<string>1C27C03A972FDE043626CF8F280C89E97069D293</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -39,6 +43,14 @@
 			<string>049F1851522FC74622ECD96DA04B35A4D2BBF313</string>
 			<key>IDESourceControlWCCName</key>
 			<string>GSDemo-Part2</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>1C27C03A972FDE043626CF8F280C89E97069D293</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iOS-GSDemo</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
