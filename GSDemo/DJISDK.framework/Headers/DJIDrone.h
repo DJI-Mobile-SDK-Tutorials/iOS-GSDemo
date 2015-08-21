@@ -27,9 +27,13 @@ typedef NS_ENUM(NSInteger, DJIDroneType){
      */
     DJIDrone_Phantom,
     /**
-     *  Type for product Inspire / Phantom3 Professional / Matrice 100
+     *  Type for product Inspire / Matrice 100
      */
     DJIDrone_Inspire,
+    /**
+     *  Type for product Phantom3 Professional
+     */
+    DJIDrone_Phantom3Professional,
     /**
      *  Type for product Phantom3 Advanced
      */
@@ -86,7 +90,7 @@ typedef NS_ENUM(NSUInteger, DJIConnectionStatus)
 @property(nonatomic, readonly) DJIMainController* mainController;
 
 /**
- *  Drones' gimbal.
+ *  Drone's gimbal.
  */
 @property(nonatomic, readonly) DJIGimbal* gimbal;
 

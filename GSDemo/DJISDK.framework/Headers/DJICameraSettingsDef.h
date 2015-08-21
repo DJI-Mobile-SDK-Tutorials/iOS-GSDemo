@@ -754,13 +754,13 @@ typedef NS_ENUM(uint8_t, CameraMultiCaptureCount)
 typedef struct
 {
     /**
-     *  value(1 ~ 254) indicate continuous capture photo count, when the camera complete take the specified photo count, it will stop automatically
-     *  value(255) indicate the camera will constantly take photo unless user stop take photo manually
+     *  Value(1 ~ 254) indicate continuous capture photo count, when the camera complete take the specified photo count, it will stop automatically
+     *  Value(255) indicate the camera will constantly take photo unless user stop take photo manually
      */
     uint8_t contiCaptureCount;
     
     /**
-     *  time interval between two capture action. value should be in range [3, 30]
+     *  time interval between two capture action. value should be in range [5, 30]
      */
     uint16_t timeInterval;
 } CameraContinuousCapturePara;
@@ -959,4 +959,35 @@ typedef NS_ENUM(uint8_t, CameraDigitalFilter){
      */
     CameraDigitalFilterUnknown = 0xFF
 };
+
+/**
+ Download file type for Inspire/Phantom3Profession.
+ */
+typedef enum
+{
+    /**
+     *  The download file is a photo
+     */
+    DJIDownloadFilePhoto,
+    /**
+     *  The download file is a DNG file
+     */
+    DJIDownloadFileDNG,
+    /**
+     *  The download file is a video 720P
+     */
+    DJIDownloadFileVideo720P,
+    /**
+     *  The download file is a video 1080P
+     */
+    DJIDownloadFileVideo1080P,
+    /**
+     *  The download file is a video 4K
+     */
+    DJIDownloadFileVideo4K,
+    /**
+     *  The download file unknown
+     */
+    DJIDownloadFileUnknown
+} DJIDownloadFileType;
 

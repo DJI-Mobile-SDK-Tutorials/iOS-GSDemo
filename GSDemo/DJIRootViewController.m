@@ -24,7 +24,6 @@
 {
     [super viewWillAppear:animated];
     [self startUpdateLocation];
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -32,8 +31,10 @@
     [super viewWillDisappear:animated];
 
     [self.locationManager stopUpdatingLocation];
-    [self.inspireDrone disconnectToDrone];
 
+    [self.inspireDrone.mainController stopUpdateMCSystemState];
+    [self.inspireDrone disconnectToDrone];
+    [self.inspireDrone destroy];
 }
 
 - (void)viewDidLoad {
@@ -67,8 +68,6 @@
     self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addWaypoints:)];
     [self.mapView addGestureRecognizer:self.tapGesture];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(registerAppSuccess:) name:@"RegisterAppSuccess" object:nil];
-
 }
 
 -(void) initUI
@@ -95,12 +94,60 @@
 - (void)initDrone
 {
     self.inspireDrone = [[DJIDrone alloc] initWithType:DJIDrone_Inspire];
-    self.inspireMainController = (DJIInspireMainController*)self.inspireDrone.mainController;
     self.inspireDrone.delegate = self;
+    
+    self.navigationManager = self.inspireDrone.mainController.navigationManager;
+    self.navigationManager.delegate = self;
+    
+    self.inspireMainController = (DJIInspireMainController*)self.inspireDrone.mainController;
     self.inspireMainController.mcDelegate = self;
-    self.inspireMainController.groundStationDelegate = self;
-    self.inspireMainController.navigationDelegate = self;
+    
+    self.waypointMission = self.navigationManager.waypointMission;
+    
+    [self registerApp];
 
+}
+
+- (void)registerApp
+{
+    NSString *appKey = @"337d68bbd8afb5cc7700b1a1";
+    [DJIAppManager registerApp:appKey withDelegate:self];
+}
+
+- (void)focusMap
+{
+    if (CLLocationCoordinate2DIsValid(self.droneLocation)) {
+        MKCoordinateRegion region = {0};
+        region.center = self.droneLocation;
+        region.span.latitudeDelta = 0.001;
+        region.span.longitudeDelta = 0.001;
+        
+        [self.mapView setRegion:region animated:YES];
+    }
+    
+}
+
+-(void) hideProgressView
+{
+    if (self.uploadProgressView) {
+        [self.uploadProgressView dismissWithClickedButtonIndex:-1 animated:YES];
+        self.uploadProgressView = nil;
+    }
+}
+
+#pragma mark DJIAppManagerDelegate Method
+-(void)appManagerDidRegisterWithError:(int)error
+{
+    NSString* message = @"Register App Successed!";
+    if (error != RegisterSuccess) {
+        message = @"Register App Failed! Please enter your App Key and check the network.";
+    }else
+    {
+        [self.inspireDrone connectToDrone];
+        [self.inspireDrone.mainController startUpdateMCSystemState];
+    }
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Register App" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alertView show];
 }
 
 #pragma mark CLLocation Methods
@@ -139,55 +186,11 @@
 
 }
 
-- (void)focusMap
-{
-    if (CLLocationCoordinate2DIsValid(self.droneLocation)) {
-        MKCoordinateRegion region = {0};
-        region.center = self.droneLocation;
-        region.span.latitudeDelta = 0.001;
-        region.span.longitudeDelta = 0.001;
-        
-        [self.mapView setRegion:region animated:YES];
-    }
-
-}
-
--(void) hideProgressView
-{
-    if (self.uploadProgressView) {
-        [self.uploadProgressView dismissWithClickedButtonIndex:-1 animated:YES];
-    }
-}
-
-
 #pragma mark - DJINavigationDelegate
 
 -(void) onNavigationMissionStatusChanged:(DJINavigationMissionStatus*)missionStatus
 {
-}
-
--(void) onNavigationPostMissionEvents:(DJINavigationEvent*)event
-{
-    if (event.eventType == NavigationEventMissionUploadFinished) {
-        DJINavigationMissionUploadFinishedEvent* finishedEvent = (DJINavigationMissionUploadFinishedEvent*)event;
-        [self.uploadProgressView setTitle:@"Mission Upload Finished"];
-        if (!finishedEvent.isMissionValid) {
-            [self.uploadProgressView setMessage:@"Mission Invalid!"];
-        }
-        else
-        {
-            [self.uploadProgressView setMessage:[NSString stringWithFormat:@"Estimate Time:%d s", (int)finishedEvent.eatimateTime]];
-            [self.inspireMainController startGroundStationTask];
-        }
-        
-        [self performSelector:@selector(hideProgressView) withObject:nil afterDelay:3.0];
-    }
-    else if (event.eventType == NavigationEventMissionExecuteFinished)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Mission Finished" message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-
-    }
+    
 }
 
 #pragma mark - GroundStationDelegate
@@ -239,25 +242,73 @@
         weakSelf.waypointConfigVC.view.alpha = 0;
     }];
     
-    for (int i = 0; i < self.gsTask.waypointCount; i++) {
-        DJIGroundStationWaypoint* waypoint = [self.gsTask waypointAtIndex:i];
+    for (int i = 0; i < self.waypointMission.waypointCount; i++) {
+        DJIWaypoint* waypoint = [self.waypointMission waypointAtIndex:i];
         waypoint.altitude = [self.waypointConfigVC.altitudeTextField.text floatValue];
-        waypoint.horizontalVelocity = self.waypointConfigVC.speedSegmentedControl.selectedSegmentIndex * 3 + 3;
     }
     
-    self.gsTask.isLoop = self.waypointConfigVC.repeatSwitcher.isOn;
-    self.gsTask.headingMode = (DJIGSHeadingMode)self.waypointConfigVC.headingSegmentedControl.selectedSegmentIndex;
-    self.gsTask.finishedAction = (DJIGSTaskFinishedAction)self.waypointConfigVC.actionSegmentedControl.selectedSegmentIndex;
+    self.waypointMission.maxFlightSpeed = [self.waypointConfigVC.maxFlightSpeedTextField.text floatValue];
+    self.waypointMission.autoFlightSpeed = [self.waypointConfigVC.autoFlightSpeedTextField.text floatValue];
+    self.waypointMission.headingMode = (DJIWaypointMissionHeadingMode)self.waypointConfigVC.headingSegmentedControl.selectedSegmentIndex;
+    self.waypointMission.finishedAction = (DJIWaypointMissionFinishedAction)self.waypointConfigVC.actionSegmentedControl.selectedSegmentIndex;
     
-    [self.inspireMainController uploadGroundStationTask:self.gsTask];
+    if (self.waypointMission.isValid) {
+    
+        if (weakSelf.uploadProgressView == nil) {
+            weakSelf.uploadProgressView = [[UIAlertView alloc] initWithTitle:@"" message:@"" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+            [weakSelf.uploadProgressView show];
+        }
 
+        [self.waypointMission setUploadProgressHandler:^(uint8_t progress) {
+            
+            [weakSelf.uploadProgressView setTitle:@"Mission Uploading"];
+            NSString* message = [NSString stringWithFormat:@"%d%%", progress];
+            [weakSelf.uploadProgressView setMessage:message];
+            
+        }];
+
+        [self.waypointMission uploadMissionWithResult:^(DJIError *error) {
+
+            [weakSelf.uploadProgressView setTitle:@"Mission Upload Finished"];
+
+            if (error.errorCode != ERR_Successed) {
+                [weakSelf.uploadProgressView setMessage:@"Mission Invalid!"];
+            }
+            
+            [weakSelf.waypointMission setUploadProgressHandler:nil];
+            [weakSelf performSelector:@selector(hideProgressView) withObject:nil afterDelay:3.0];
+            
+            [weakSelf.waypointMission startMissionWithResult:^(DJIError *error) {
+                if (error.errorCode != ERR_Successed) {
+                    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Start Mission Failed" message:error.errorDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alertView show];
+                }
+            }];
+            
+        }];
+
+    }else
+    {
+
+        UIAlertView *invalidMissionAlert = [[UIAlertView alloc] initWithTitle:@"Waypoint mission invalid" message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [invalidMissionAlert show];
+    }
+    
 }
 
 #pragma mark - DJIGSButtonViewController Delegate Methods
 
 - (void)stopBtnActionInGSButtonVC:(DJIGSButtonViewController *)GSBtnVC
 {
-    [self.inspireMainController stopGroundStationTask];
+    [self.waypointMission stopMissionWithResult:^(DJIError *error) {
+        
+        if (error.errorCode == ERR_Successed) {
+            UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Stop Mission Success" message:@"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+        }
+
+    }];
+
 }
 
 - (void)clearBtnActionInGSButtonVC:(DJIGSButtonViewController *)GSBtnVC
@@ -270,44 +321,62 @@
     [self focusMap];
 }
 
-- (void)startBtnActionInGSButtonVC:(DJIGSButtonViewController *)GSBtnVC
+- (void)configBtnActionInGSButtonVC:(DJIGSButtonViewController *)GSBtnVC
 {
     __weak DJIRootViewController *weakSelf = self;
-
+    
+    NSArray* wayPoints = self.mapController.wayPoints;
+    if (wayPoints == nil || wayPoints.count < DJIWaypointMissionMinimumWaypointCount) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No or not enough waypoint for mission" message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    
     [UIView animateWithDuration:0.25 animations:^{
         weakSelf.waypointConfigVC.view.alpha = 1.0;
     }];
     
-    NSArray* wayPoints = self.mapController.wayPoints;
-    if (wayPoints == nil || wayPoints.count == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No waypoint for mission" message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-        return;
-    }
+    [self.waypointMission removeAllWaypoints];
 
-    self.gsTask = [DJIGroundStationTask newTask];
     for (int i = 0; i < wayPoints.count; i++) {
         CLLocation* location = [wayPoints objectAtIndex:i];
         if (CLLocationCoordinate2DIsValid(location.coordinate)) {
-            DJIGroundStationWaypoint* waypoint = [[DJIGroundStationWaypoint alloc] initWithCoordinate:location.coordinate];
-            [self.gsTask addWaypoint:waypoint];
+            DJIWaypoint* waypoint = [[DJIWaypoint alloc] initWithCoordinate:location.coordinate];
+            [self.waypointMission addWaypoint:waypoint];
         }
     }
-    
+
+}
+
+- (void)startBtnActionInGSButtonVC:(DJIGSButtonViewController *)GSBtnVC
+{
+    [self.waypointMission startMissionWithResult:^(DJIError *error) {
+        if (error.errorCode != ERR_Successed) {
+            UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Start Mission Failed" message:error.errorDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+        }
+    }];
+
 }
 
 - (void)switchToMode:(DJIGSViewMode)mode inGSButtonVC:(DJIGSButtonViewController *)GSBtnVC
 {
     if (mode == DJIGSViewMode_EditMode) {
-        
         [self focusMap];
-        self.isEditingPoints = YES;
-    
-    }else if (mode == DJIGSViewMode_ViewMode)
-    {
-        self.isEditingPoints = NO;
     }
     
+}
+
+- (void)addBtn:(UIButton *)button withActionInGSButtonVC:(DJIGSButtonViewController *)GSBtnVC
+{
+    if (self.isEditingPoints) {
+        self.isEditingPoints = NO;
+        [button setTitle:@"Add" forState:UIControlStateNormal];
+    }else
+    {
+        self.isEditingPoints = YES;
+        [button setTitle:@"Finished" forState:UIControlStateNormal];
+    }
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -335,20 +404,33 @@
     return nil;
 }
 
+- (void)enterNavigationMode
+{
+    [self.navigationManager enterNavigationModeWithResult:^(DJIError *error) {
+        if (error.errorCode != ERR_Successed) {
+            NSString* message = [NSString stringWithFormat:@"Enter navigation mode failed:%@", error.errorDescription];
+            UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Enter Navigation Mode" message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Retry", nil];
+            alertView.tag = kEnterNaviModeFailedAlertTag;
+            [alertView show];
+        }else
+        {
+            NSString* message = @"Enter navigation mode Success";
+            UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Enter Navigation Mode" message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+            
+        }
+        
+    }];
+    
+}
+
 #pragma mark - UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (alertView.tag == 1002) {
+    if (alertView.tag == kEnterNaviModeFailedAlertTag) {
         if (buttonIndex == 1) {
-            [self.inspireMainController enterNavigationModeWithResult:^(DJIError *error) {
-                if (error.errorCode != ERR_Successed) {
-                    NSString* message = [NSString stringWithFormat:@"Enter navigation mode failed:%@", error.errorDescription];
-                    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Enter Navigation Mode" message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Retry", nil];
-                    alertView.tag = kEnterNaviModeFailedAlertTag;
-                    [alertView show];
-                }
-            }];
+            [self enterNavigationMode];
         }
     }
 }
@@ -357,16 +439,8 @@
 -(void) droneOnConnectionStatusChanged:(DJIConnectionStatus)status
 {
     if (status == ConnectionSuccessed) {
-        [self.inspireMainController enterNavigationModeWithResult:^(DJIError *error) {
-            if (error.errorCode != ERR_Successed) {
-                NSString* message = [NSString stringWithFormat:@"Enter navigation mode failed:%@", error.errorDescription];
-                UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Enter Navigation Mode" message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Retry", nil];
-                alertView.tag = kEnterNaviModeFailedAlertTag;
-                [alertView show];
-            }
-        }];
+        [self enterNavigationMode];
     }
-    
 }
 
 #pragma mark - DJIMainControllerDelegate Method
@@ -374,23 +448,21 @@
 -(void) mainController:(DJIMainController*)mc didUpdateSystemState:(DJIMCSystemState*)state
 {
     self.droneLocation = state.droneLocation;
-    DJIInspireMCSystemState* inspireState = (DJIInspireMCSystemState*)state;
-    if (!inspireState.canIOCWork) {
-        [self.inspireMainController setFlightModeSwitchable:YES withResult:nil];
-    }
-    if (inspireState.isIOCWorking) {
-        [self.inspireMainController setIOCWorking:NO withResult:nil];
+    
+    if (!state.isMultipleFlightModeOpen) {
+        [self.inspireMainController setMultipleFlightModeOpen:YES withResult:nil];
     }
     
-    self.modeLabel.text = inspireState.flightModeString;
-    self.gpsLabel.text = [NSString stringWithFormat:@"%d", inspireState.satelliteCount];
-    self.vsLabel.text = [NSString stringWithFormat:@"%0.1f M/S",inspireState.velocityZ];
-    self.hsLabel.text = [NSString stringWithFormat:@"%0.1f M/S",(sqrtf(inspireState.velocityX*inspireState.velocityX + inspireState.velocityY*inspireState.velocityY))];
-    self.altitudeLabel.text = [NSString stringWithFormat:@"%0.1f M",inspireState.altitude];
+    self.modeLabel.text = state.flightModeString;
+    self.gpsLabel.text = [NSString stringWithFormat:@"%d", state.satelliteCount];
+    self.vsLabel.text = [NSString stringWithFormat:@"%0.1f M/S",state.velocityZ];
+    self.hsLabel.text = [NSString stringWithFormat:@"%0.1f M/S",(sqrtf(state.velocityX*state.velocityX + state.velocityY*state.velocityY))];
+    self.altitudeLabel.text = [NSString stringWithFormat:@"%0.1f M",state.altitude];
     
     [self.mapController updateAircraftLocation:self.droneLocation withMapView:self.mapView];
     double radianYaw = (state.attitude.yaw * M_PI / 180.0);
     [self.mapController updateAircraftHeading:radianYaw];
+    
     
 }
 

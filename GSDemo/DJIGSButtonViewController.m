@@ -26,6 +26,7 @@
 
 - (void)setMode:(DJIGSViewMode)mode
 {
+    
     _mode = mode;
     [_editBtn setHidden:(mode == DJIGSViewMode_EditMode)];
     [_focusMapBtn setHidden:(mode == DJIGSViewMode_EditMode)];
@@ -33,6 +34,8 @@
     [_clearBtn setHidden:(mode == DJIGSViewMode_ViewMode)];
     [_startBtn setHidden:(mode == DJIGSViewMode_ViewMode)];
     [_stopBtn setHidden:(mode == DJIGSViewMode_ViewMode)];
+    [_addBtn setHidden:(mode == DJIGSViewMode_ViewMode)];
+    [_configBtn setHidden:(mode == DJIGSViewMode_ViewMode)];
 }
 
 #pragma mark - IBAction Methods
@@ -80,6 +83,21 @@
     
     if ([_delegate respondsToSelector:@selector(startBtnActionInGSButtonVC:)]) {
         [_delegate startBtnActionInGSButtonVC:self];
+    }
+}
+
+- (IBAction)addBtnAction:(id)sender {
+    
+    if ([_delegate respondsToSelector:@selector(addBtn:withActionInGSButtonVC:)]) {
+        [_delegate addBtn:self.addBtn withActionInGSButtonVC:self];
+    }
+    
+}
+
+- (IBAction)configBtnAction:(id)sender {
+    
+    if ([_delegate respondsToSelector:@selector(configBtnActionInGSButtonVC:)]) {
+        [_delegate configBtnActionInGSButtonVC:self];
     }
 }
 

@@ -12,7 +12,7 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface DJIRootViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate, DJIDroneDelegate, DJIMainControllerDelegate, GroundStationDelegate, DJINavigationDelegate>
+@interface DJIRootViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate, DJIDroneDelegate, DJIMainControllerDelegate, GroundStationDelegate, DJINavigationDelegate, DJIAppManagerDelegate>
 
 @property (nonatomic, strong) DJIMapController *mapController;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -32,7 +32,9 @@
 @property(nonatomic, strong) DJIDrone* inspireDrone;
 @property(nonatomic, strong) DJIInspireMainController* inspireMainController;
 
-@property(nonatomic, strong) DJIGroundStationTask* gsTask;
+@property(nonatomic, weak) NSObject<DJINavigation>* navigationManager;
+@property(nonatomic, weak) NSObject<DJIWaypointMission>* waypointMission;
+
 @property(nonatomic, strong) UIAlertView* uploadProgressView;
 
 

@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DJIGSButtonViewController">
             <connections>
+                <outlet property="addBtn" destination="lSR-Lj-eLh" id="v4H-CP-LJx"/>
                 <outlet property="backBtn" destination="370-h9-FcK" id="uA0-OE-MWh"/>
                 <outlet property="clearBtn" destination="0sF-Ja-1FL" id="jvY-a6-5PB"/>
+                <outlet property="configBtn" destination="aiQ-ud-2ld" id="jsc-ba-OHB"/>
                 <outlet property="editBtn" destination="k0D-Bh-d3b" id="Cgx-5R-z7i"/>
                 <outlet property="focusMapBtn" destination="FOG-9k-vPx" id="6qt-jF-7j0"/>
                 <outlet property="startBtn" destination="k2j-Ze-OI2" id="Bfg-Fj-wow"/>
@@ -17,7 +19,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="110" height="260"/>
+            <rect key="frame" x="0.0" y="0.0" width="110" height="384"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="370-h9-FcK" userLabel="back">
@@ -30,7 +32,7 @@
                     </connections>
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A9l-OA-cof" userLabel="stop">
-                    <rect key="frame" x="15" y="205" width="81" height="38"/>
+                    <rect key="frame" x="15" y="319" width="81" height="38"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <state key="normal" title="Stop"/>
@@ -39,7 +41,7 @@
                     </connections>
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0sF-Ja-1FL" userLabel="clear">
-                    <rect key="frame" x="15" y="81" width="81" height="38"/>
+                    <rect key="frame" x="15" y="133" width="81" height="38"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <state key="normal" title="Clear"/>
@@ -48,7 +50,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOG-9k-vPx" userLabel="focusMap">
-                    <rect key="frame" x="15" y="81" width="81" height="38"/>
+                    <rect key="frame" x="15" y="74" width="81" height="38"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <state key="normal" title="Focus Map"/>
@@ -66,7 +68,7 @@
                     </connections>
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k2j-Ze-OI2" userLabel="start">
-                    <rect key="frame" x="15" y="143" width="81" height="38"/>
+                    <rect key="frame" x="15" y="257" width="81" height="38"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <state key="normal" title="Start"/>
@@ -74,11 +76,29 @@
                         <action selector="startBtnAction:" destination="-1" eventType="touchUpInside" id="pux-tI-PLk"/>
                     </connections>
                 </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSR-Lj-eLh" userLabel="add">
+                    <rect key="frame" x="15" y="74" width="81" height="38"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="Add"/>
+                    <connections>
+                        <action selector="addBtnAction:" destination="-1" eventType="touchUpInside" id="NcH-eP-4Tk"/>
+                    </connections>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aiQ-ud-2ld" userLabel="config">
+                    <rect key="frame" x="15" y="194" width="81" height="38"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="Config"/>
+                    <connections>
+                        <action selector="configBtnAction:" destination="-1" eventType="touchUpInside" id="0yB-Y2-IC6"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-46" y="318"/>
+            <point key="canvasLocation" x="-54" y="319"/>
         </view>
     </objects>
 </document>

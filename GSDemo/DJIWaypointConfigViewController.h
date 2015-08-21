@@ -20,8 +20,8 @@
 @interface DJIWaypointConfigViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITextField *altitudeTextField;
-@property (weak, nonatomic) IBOutlet UISwitch *repeatSwitcher;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *speedSegmentedControl;
+@property (weak, nonatomic) IBOutlet UITextField *autoFlightSpeedTextField;
+@property (weak, nonatomic) IBOutlet UITextField *maxFlightSpeedTextField;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *actionSegmentedControl;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *headingSegmentedControl;
 

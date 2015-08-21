@@ -7,9 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import <DJISDK/DJISDK.h>
 
-@interface AppDelegate ()<DJIAppManagerDelegate>
+@interface AppDelegate ()
 
 @end
 
@@ -17,26 +16,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    NSString *appKey = @"Enter your App Key";
-    [DJIAppManager registerApp:appKey withDelegate:self];
-    
     return YES;
 }
-
-#pragma mark DJIAppManagerDelegate Method
--(void)appManagerDidRegisterWithError:(int)error
-{
-    NSString* message = @"Register App Successed!";
-    if (error != RegisterSuccess) {
-        message = @"Register App Failed! Please enter your App Key and check the network";
-    }else
-    {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"RegisterAppSuccess" object:nil];
-    }
-    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Register App" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alertView show];
-}
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

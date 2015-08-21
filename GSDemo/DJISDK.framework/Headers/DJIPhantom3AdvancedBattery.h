@@ -10,9 +10,9 @@
 @interface DJIPhantom3AdvancedBattery : DJIBattery
 
 /**
- *  Get cell's voltage. The object in cellArray is type of class DJIBatteryCell
+ *  Get battery's cell voltage. The object in cellArray is kind of class DJIBatteryCell
  *
- *  @param block Remote execute result
+ *  @param block Remote execute result callback.
  */
 -(void) getCellVoltagesWithResult:(void(^)(NSArray* cellArray, DJIError* error))block;
 

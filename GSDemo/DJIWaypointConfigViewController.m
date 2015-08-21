@@ -28,11 +28,11 @@
 
 - (void)initUI
 {
-    self.altitudeTextField.text = @"50";
-    [self.repeatSwitcher setOn:NO animated:YES]; //Turn off it to cancel execute GroundStation Task looply
-    [self.speedSegmentedControl setSelectedSegmentIndex:1]; //Set the horizontal speed to Mid
-    [self.actionSegmentedControl setSelectedSegmentIndex:1]; //Set the finishAction to GSTaskFinishedGoHome
-    [self.headingSegmentedControl setSelectedSegmentIndex:0]; //Set the headingMode to GSHeadingTowardNexWaypoint
+    self.altitudeTextField.text = @"50"; //Set the altitude to 50
+    self.autoFlightSpeedTextField.text = @"8"; //Set the autoFlightSpeed to 8
+    self.maxFlightSpeedTextField.text = @"10"; //Set the maxFlightSpeed to 10
+    [self.actionSegmentedControl setSelectedSegmentIndex:1]; //Set the finishAction to DJIWaypointMissionFinishedGoHome
+    [self.headingSegmentedControl setSelectedSegmentIndex:0]; //Set the headingMode to DJIWaypointMissionHeadingAuto
     
 }
 
