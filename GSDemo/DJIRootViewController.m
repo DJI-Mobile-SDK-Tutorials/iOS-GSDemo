@@ -51,6 +51,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)prefersStatusBarHidden {
+    return NO;
+}
+
 #pragma mark NSNotification Selector Method
 - (void)registerAppSuccess:(NSNotification *)notification
 {
@@ -85,7 +89,18 @@
     
     self.waypointConfigVC = [[DJIWaypointConfigViewController alloc] initWithNibName:@"DJIWaypointConfigViewController" bundle:[NSBundle mainBundle]];
     self.waypointConfigVC.view.alpha = 0;
-    self.waypointConfigVC.view.center = self.view.center;
+    self.waypointConfigVC.view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
+    
+    CGFloat configVCOriginX = (CGRectGetWidth(self.view.frame) - CGRectGetWidth(self.waypointConfigVC.view.frame))/2;
+    CGFloat configVCOriginY = CGRectGetHeight(self.topBarView.frame) + CGRectGetMinY(self.topBarView.frame) + 8;
+    
+    [self.waypointConfigVC.view setFrame:CGRectMake(configVCOriginX, configVCOriginY, CGRectGetWidth(self.waypointConfigVC.view.frame), CGRectGetHeight(self.waypointConfigVC.view.frame))];
+    
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) //Check if it's using iPad and center the config view
+    {
+        self.waypointConfigVC.view.center = self.view.center;
+    }
+
     self.waypointConfigVC.delegate = self;
     [self.view addSubview:self.waypointConfigVC.view];
     
@@ -105,7 +120,6 @@
     self.waypointMission = self.navigationManager.waypointMission;
     
     [self registerApp];
-
 }
 
 - (void)registerApp

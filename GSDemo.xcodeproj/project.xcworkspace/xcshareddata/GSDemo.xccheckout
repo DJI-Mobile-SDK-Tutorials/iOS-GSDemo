@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>92D76091-C7C6-4DDD-AD58-9CB4FDF3B3E8</string>
 	<key>IDESourceControlProjectName</key>
-	<string>GSDemo</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>1C27C03A972FDE043626CF8F280C89E97069D293</key>
 		<string>github.com:DJI-Mobile-SDK/iOS-GSDemo.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>GSDemo.xcodeproj</string>
+	<string>GSDemo.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>1C27C03A972FDE043626CF8F280C89E97069D293</key>

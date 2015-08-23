@@ -28,7 +28,7 @@
 
 - (void)initUI
 {
-    self.altitudeTextField.text = @"50"; //Set the altitude to 50
+    self.altitudeTextField.text = @"100"; //Set the altitude to 100
     self.autoFlightSpeedTextField.text = @"8"; //Set the autoFlightSpeed to 8
     self.maxFlightSpeedTextField.text = @"10"; //Set the maxFlightSpeed to 10
     [self.actionSegmentedControl setSelectedSegmentIndex:1]; //Set the finishAction to DJIWaypointMissionFinishedGoHome
