@@ -124,7 +124,7 @@
 
 - (void)registerApp
 {
-    NSString *appKey = @"Enter Your App Key Here";
+    NSString *appKey = @"337d68bbd8afb5cc7700b1a1";
     [DJIAppManager registerApp:appKey withDelegate:self];
 }
 
