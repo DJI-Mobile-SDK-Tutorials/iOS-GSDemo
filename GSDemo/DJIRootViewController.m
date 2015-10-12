@@ -34,7 +34,6 @@
 
     [self.inspireDrone.mainController stopUpdateMCSystemState];
     [self.inspireDrone disconnectToDrone];
-    [self.inspireDrone destroy];
 }
 
 - (void)viewDidLoad {
@@ -285,7 +284,7 @@
 
             [weakSelf.uploadProgressView setTitle:@"Mission Upload Finished"];
 
-            if (error.errorCode != ERR_Successed) {
+            if (error.errorCode != ERR_Succeeded) {
                 [weakSelf.uploadProgressView setMessage:@"Mission Invalid!"];
             }
             
@@ -293,7 +292,7 @@
             [weakSelf performSelector:@selector(hideProgressView) withObject:nil afterDelay:3.0];
             
             [weakSelf.waypointMission startMissionWithResult:^(DJIError *error) {
-                if (error.errorCode != ERR_Successed) {
+                if (error.errorCode != ERR_Succeeded) {
                     UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Start Mission Failed" message:error.errorDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                     [alertView show];
                 }
@@ -303,7 +302,6 @@
 
     }else
     {
-
         UIAlertView *invalidMissionAlert = [[UIAlertView alloc] initWithTitle:@"Waypoint mission invalid" message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [invalidMissionAlert show];
     }
@@ -316,7 +314,7 @@
 {
     [self.waypointMission stopMissionWithResult:^(DJIError *error) {
         
-        if (error.errorCode == ERR_Successed) {
+        if (error.errorCode == ERR_Succeeded) {
             UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Stop Mission Success" message:@"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
         }
@@ -359,18 +357,17 @@
             [self.waypointMission addWaypoint:waypoint];
         }
     }
-
+    
 }
 
 - (void)startBtnActionInGSButtonVC:(DJIGSButtonViewController *)GSBtnVC
 {
     [self.waypointMission startMissionWithResult:^(DJIError *error) {
-        if (error.errorCode != ERR_Successed) {
+        if (error.errorCode != ERR_Succeeded) {
             UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Start Mission Failed" message:error.errorDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
         }
     }];
-
 }
 
 - (void)switchToMode:(DJIGSViewMode)mode inGSButtonVC:(DJIGSButtonViewController *)GSBtnVC
@@ -421,7 +418,7 @@
 - (void)enterNavigationMode
 {
     [self.navigationManager enterNavigationModeWithResult:^(DJIError *error) {
-        if (error.errorCode != ERR_Successed) {
+        if (error.errorCode != ERR_Succeeded) {
             NSString* message = [NSString stringWithFormat:@"Enter navigation mode failed:%@", error.errorDescription];
             UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Enter Navigation Mode" message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Retry", nil];
             alertView.tag = kEnterNaviModeFailedAlertTag;
@@ -433,9 +430,7 @@
             [alertView show];
             
         }
-        
     }];
-    
 }
 
 #pragma mark - UIAlertViewDelegate
@@ -452,7 +447,7 @@
 #pragma mark - DJIDroneDelegate Method
 -(void) droneOnConnectionStatusChanged:(DJIConnectionStatus)status
 {
-    if (status == ConnectionSuccessed) {
+    if (status == ConnectionSucceeded) {
         [self enterNavigationMode];
     }
 }
@@ -476,7 +471,6 @@
     [self.mapController updateAircraftLocation:self.droneLocation withMapView:self.mapView];
     double radianYaw = (state.attitude.yaw * M_PI / 180.0);
     [self.mapController updateAircraftHeading:radianYaw];
-    
     
 }
 
