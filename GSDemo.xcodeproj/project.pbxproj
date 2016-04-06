@@ -7,10 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0203E5881C9C0C7C00A69BCF /* DJISDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A4E86B9C1B4A56D300F204DA /* DJISDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A402A0701B4BC22400129605 /* DJIRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A402A06F1B4BC22400129605 /* DJIRootViewController.m */; };
 		A402A0741B4BC43800129605 /* DJIMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = A402A0721B4BC43800129605 /* DJIMapController.m */; };
 		A402A07A1B4BDAE400129605 /* DJIAircraftAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A402A0771B4BDAE400129605 /* DJIAircraftAnnotation.m */; };
 		A402A07B1B4BDAE400129605 /* DJIAircraftAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = A402A0791B4BDAE400129605 /* DJIAircraftAnnotationView.m */; };
+		A4507F201CB5054A0037861C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A4507F1F1CB5054A0037861C /* libz.tbd */; };
+		A4507F221CB505600037861C /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A4507F211CB505600037861C /* libstdc++.6.0.9.tbd */; };
+		A4507F291CB506D40037861C /* DJIGSButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4507F241CB506D40037861C /* DJIGSButtonViewController.m */; };
+		A4507F2A1CB506D40037861C /* DJIGSButtonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4507F251CB506D40037861C /* DJIGSButtonViewController.xib */; };
+		A4507F2B1CB506D40037861C /* DJIWaypointConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4507F271CB506D40037861C /* DJIWaypointConfigViewController.m */; };
+		A4507F2C1CB506D40037861C /* DJIWaypointConfigViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4507F281CB506D40037861C /* DJIWaypointConfigViewController.xib */; };
+		A4507F301CB506F20037861C /* DemoUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = A4507F2F1CB506F20037861C /* DemoUtility.m */; };
 		A4E86B781B4A374300F204DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E86B771B4A374300F204DA /* main.m */; };
 		A4E86B7B1B4A374300F204DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E86B7A1B4A374300F204DA /* AppDelegate.m */; };
 		A4E86B811B4A374300F204DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4E86B7F1B4A374300F204DA /* Main.storyboard */; };
@@ -18,12 +26,6 @@
 		A4E86B861B4A374300F204DA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E86B841B4A374300F204DA /* LaunchScreen.xib */; };
 		A4E86B921B4A374300F204DA /* GSDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E86B911B4A374300F204DA /* GSDemoTests.m */; };
 		A4E86B9D1B4A56D300F204DA /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E86B9C1B4A56D300F204DA /* DJISDK.framework */; };
-		A4E86B9F1B4A572C00F204DA /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E86B9E1B4A572C00F204DA /* libstdc++.6.0.9.dylib */; };
-		A4E86BA11B4A573400F204DA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E86BA01B4A573400F204DA /* libz.dylib */; };
-		A4EBC0831B5234E300462D63 /* DJIWaypointConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EBC0811B5234E300462D63 /* DJIWaypointConfigViewController.m */; };
-		A4EBC0841B5234E300462D63 /* DJIWaypointConfigViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4EBC0821B5234E300462D63 /* DJIWaypointConfigViewController.xib */; };
-		A4F82A841B4F7BC7006071DE /* DJIGSButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F82A821B4F7BC7006071DE /* DJIGSButtonViewController.m */; };
-		A4F82A851B4F7BC7006071DE /* DJIGSButtonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F82A831B4F7BC7006071DE /* DJIGSButtonViewController.xib */; };
 		A4F9574C1B4ADD570017733D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F9574B1B4ADD570017733D /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +39,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		0203E5871C9C0C7500A69BCF /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0203E5881C9C0C7C00A69BCF /* DJISDK.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		0203E5861C9C0B5F00A69BCF /* GSDemo-pch.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GSDemo-pch.pch"; sourceTree = "<group>"; };
 		A402A06E1B4BC22400129605 /* DJIRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJIRootViewController.h; sourceTree = "<group>"; };
 		A402A06F1B4BC22400129605 /* DJIRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJIRootViewController.m; sourceTree = "<group>"; };
 		A402A0711B4BC43800129605 /* DJIMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJIMapController.h; sourceTree = "<group>"; };
@@ -46,6 +62,16 @@
 		A402A0771B4BDAE400129605 /* DJIAircraftAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJIAircraftAnnotation.m; sourceTree = "<group>"; };
 		A402A0781B4BDAE400129605 /* DJIAircraftAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJIAircraftAnnotationView.h; sourceTree = "<group>"; };
 		A402A0791B4BDAE400129605 /* DJIAircraftAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJIAircraftAnnotationView.m; sourceTree = "<group>"; };
+		A4507F1F1CB5054A0037861C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		A4507F211CB505600037861C /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
+		A4507F231CB506D40037861C /* DJIGSButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJIGSButtonViewController.h; sourceTree = "<group>"; };
+		A4507F241CB506D40037861C /* DJIGSButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJIGSButtonViewController.m; sourceTree = "<group>"; };
+		A4507F251CB506D40037861C /* DJIGSButtonViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DJIGSButtonViewController.xib; sourceTree = "<group>"; };
+		A4507F261CB506D40037861C /* DJIWaypointConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJIWaypointConfigViewController.h; sourceTree = "<group>"; };
+		A4507F271CB506D40037861C /* DJIWaypointConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJIWaypointConfigViewController.m; sourceTree = "<group>"; };
+		A4507F281CB506D40037861C /* DJIWaypointConfigViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DJIWaypointConfigViewController.xib; sourceTree = "<group>"; };
+		A4507F2E1CB506F20037861C /* DemoUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoUtility.h; sourceTree = "<group>"; };
+		A4507F2F1CB506F20037861C /* DemoUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoUtility.m; sourceTree = "<group>"; };
 		A4E86B721B4A374300F204DA /* GSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E86B761B4A374300F204DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4E86B771B4A374300F204DA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -58,14 +84,6 @@
 		A4E86B901B4A374300F204DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4E86B911B4A374300F204DA /* GSDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GSDemoTests.m; sourceTree = "<group>"; };
 		A4E86B9C1B4A56D300F204DA /* DJISDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DJISDK.framework; sourceTree = "<group>"; };
-		A4E86B9E1B4A572C00F204DA /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
-		A4E86BA01B4A573400F204DA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		A4EBC0801B5234E300462D63 /* DJIWaypointConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJIWaypointConfigViewController.h; sourceTree = "<group>"; };
-		A4EBC0811B5234E300462D63 /* DJIWaypointConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJIWaypointConfigViewController.m; sourceTree = "<group>"; };
-		A4EBC0821B5234E300462D63 /* DJIWaypointConfigViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DJIWaypointConfigViewController.xib; sourceTree = "<group>"; };
-		A4F82A811B4F7BC7006071DE /* DJIGSButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJIGSButtonViewController.h; sourceTree = "<group>"; };
-		A4F82A821B4F7BC7006071DE /* DJIGSButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJIGSButtonViewController.m; sourceTree = "<group>"; };
-		A4F82A831B4F7BC7006071DE /* DJIGSButtonViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DJIGSButtonViewController.xib; sourceTree = "<group>"; };
 		A4F9574B1B4ADD570017733D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -74,9 +92,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4507F221CB505600037861C /* libstdc++.6.0.9.tbd in Frameworks */,
+				A4507F201CB5054A0037861C /* libz.tbd in Frameworks */,
 				A4F9574C1B4ADD570017733D /* MapKit.framework in Frameworks */,
-				A4E86BA11B4A573400F204DA /* libz.dylib in Frameworks */,
-				A4E86B9F1B4A572C00F204DA /* libstdc++.6.0.9.dylib in Frameworks */,
 				A4E86B9D1B4A56D300F204DA /* DJISDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,6 +109,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A4507F2D1CB506F20037861C /* DemoUtility */ = {
+			isa = PBXGroup;
+			children = (
+				A4507F2E1CB506F20037861C /* DemoUtility.h */,
+				A4507F2F1CB506F20037861C /* DemoUtility.m */,
+			);
+			path = DemoUtility;
+			sourceTree = "<group>";
+		};
 		A4E86B691B4A374300F204DA = {
 			isa = PBXGroup;
 			children = (
@@ -113,25 +140,26 @@
 		A4E86B741B4A374300F204DA /* GSDemo */ = {
 			isa = PBXGroup;
 			children = (
+				A402A06E1B4BC22400129605 /* DJIRootViewController.h */,
+				A402A06F1B4BC22400129605 /* DJIRootViewController.m */,
+				A4E86B791B4A374300F204DA /* AppDelegate.h */,
+				A4E86B7A1B4A374300F204DA /* AppDelegate.m */,
 				A402A0761B4BDAE400129605 /* DJIAircraftAnnotation.h */,
 				A402A0771B4BDAE400129605 /* DJIAircraftAnnotation.m */,
 				A402A0781B4BDAE400129605 /* DJIAircraftAnnotationView.h */,
 				A402A0791B4BDAE400129605 /* DJIAircraftAnnotationView.m */,
-				A4E86B791B4A374300F204DA /* AppDelegate.h */,
-				A4E86B7A1B4A374300F204DA /* AppDelegate.m */,
 				A402A0711B4BC43800129605 /* DJIMapController.h */,
 				A402A0721B4BC43800129605 /* DJIMapController.m */,
-				A4F82A811B4F7BC7006071DE /* DJIGSButtonViewController.h */,
-				A4F82A821B4F7BC7006071DE /* DJIGSButtonViewController.m */,
-				A4F82A831B4F7BC7006071DE /* DJIGSButtonViewController.xib */,
-				A4EBC0801B5234E300462D63 /* DJIWaypointConfigViewController.h */,
-				A4EBC0811B5234E300462D63 /* DJIWaypointConfigViewController.m */,
-				A4EBC0821B5234E300462D63 /* DJIWaypointConfigViewController.xib */,
-				A402A06E1B4BC22400129605 /* DJIRootViewController.h */,
-				A402A06F1B4BC22400129605 /* DJIRootViewController.m */,
+				A4507F231CB506D40037861C /* DJIGSButtonViewController.h */,
+				A4507F241CB506D40037861C /* DJIGSButtonViewController.m */,
+				A4507F251CB506D40037861C /* DJIGSButtonViewController.xib */,
+				A4507F261CB506D40037861C /* DJIWaypointConfigViewController.h */,
+				A4507F271CB506D40037861C /* DJIWaypointConfigViewController.m */,
+				A4507F281CB506D40037861C /* DJIWaypointConfigViewController.xib */,
 				A4E86B7F1B4A374300F204DA /* Main.storyboard */,
 				A4E86B821B4A374300F204DA /* Images.xcassets */,
 				A4E86B841B4A374300F204DA /* LaunchScreen.xib */,
+				A4507F2D1CB506F20037861C /* DemoUtility */,
 				A4E86B751B4A374300F204DA /* Supporting Files */,
 			);
 			path = GSDemo;
@@ -140,6 +168,7 @@
 		A4E86B751B4A374300F204DA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0203E5861C9C0B5F00A69BCF /* GSDemo-pch.pch */,
 				A4E86B761B4A374300F204DA /* Info.plist */,
 				A4E86B771B4A374300F204DA /* main.m */,
 			);
@@ -166,9 +195,9 @@
 		A4E86B9B1B4A56C600F204DA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A4507F211CB505600037861C /* libstdc++.6.0.9.tbd */,
+				A4507F1F1CB5054A0037861C /* libz.tbd */,
 				A4F9574B1B4ADD570017733D /* MapKit.framework */,
-				A4E86BA01B4A573400F204DA /* libz.dylib */,
-				A4E86B9E1B4A572C00F204DA /* libstdc++.6.0.9.dylib */,
 				A4E86B9C1B4A56D300F204DA /* DJISDK.framework */,
 			);
 			name = Frameworks;
@@ -185,6 +214,7 @@
 				A4E86B6E1B4A374300F204DA /* Sources */,
 				A4E86B6F1B4A374300F204DA /* Frameworks */,
 				A4E86B701B4A374300F204DA /* Resources */,
+				0203E5871C9C0C7500A69BCF /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -256,9 +286,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4E86B811B4A374300F204DA /* Main.storyboard in Resources */,
-				A4EBC0841B5234E300462D63 /* DJIWaypointConfigViewController.xib in Resources */,
+				A4507F2C1CB506D40037861C /* DJIWaypointConfigViewController.xib in Resources */,
 				A4E86B861B4A374300F204DA /* LaunchScreen.xib in Resources */,
-				A4F82A851B4F7BC7006071DE /* DJIGSButtonViewController.xib in Resources */,
+				A4507F2A1CB506D40037861C /* DJIGSButtonViewController.xib in Resources */,
 				A4E86B831B4A374300F204DA /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,10 +307,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4507F301CB506F20037861C /* DemoUtility.m in Sources */,
 				A402A07A1B4BDAE400129605 /* DJIAircraftAnnotation.m in Sources */,
-				A4EBC0831B5234E300462D63 /* DJIWaypointConfigViewController.m in Sources */,
+				A4507F2B1CB506D40037861C /* DJIWaypointConfigViewController.m in Sources */,
 				A402A0701B4BC22400129605 /* DJIRootViewController.m in Sources */,
-				A4F82A841B4F7BC7006071DE /* DJIGSButtonViewController.m in Sources */,
+				A4507F291CB506D40037861C /* DJIGSButtonViewController.m in Sources */,
 				A402A0741B4BC43800129605 /* DJIMapController.m in Sources */,
 				A402A07B1B4BDAE400129605 /* DJIAircraftAnnotationView.m in Sources */,
 				A4E86B7B1B4A374300F204DA /* AppDelegate.m in Sources */,
@@ -417,9 +448,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/GSDemo",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GSDemo/GSDemo-pch.pch";
 				INFOPLIST_FILE = GSDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dji.gsdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -433,9 +467,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/GSDemo",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GSDemo/GSDemo-pch.pch";
 				INFOPLIST_FILE = GSDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dji.gsdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

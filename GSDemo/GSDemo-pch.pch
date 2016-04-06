@@ -1,0 +1,17 @@
+//
+//  GSDemo-pch.pch
+//  GSDemo
+//
+//  Created by DJI on 3/17/16.
+//  Copyright © 2016 DJI. All rights reserved.
+//
+
+#ifndef GSDemo_pch_pch
+#define GSDemo_pch_pch
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#endif
+
+#endif /* GSDemo_pch_pch */

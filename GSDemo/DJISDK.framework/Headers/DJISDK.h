@@ -2,81 +2,129 @@
 //  DJISDK.h
 //  DJISDK
 //
-//  Copyright (c) 2015 DJI. All rights reserved.
+//  Copyright © 2015, DJI. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-#import <DJISDK/DJIFoundation.h>
-#import <DJISDK/DJIAppManager.h>
-#import <DJISDK/DJIObject.h>
-#import <DJISDK/DJIError.h>
+/**
+ *  Project version number for DJISDK.
+ */
+FOUNDATION_EXPORT double DJISDKVersionNumber;
 
-//Drone
-#import <DJISDK/DJIDrone.h>
+/**
+ *  Project version string for DJISDK.
+ */
+FOUNDATION_EXPORT const unsigned char DJISDKVersionString[];
 
-//Camera
+// In this header, import all the public headers of your framework using statements like #import <DJISDK/PublicHeader.h>
+
+/*********************************************************************************/
+#pragma mark - SDK Manager
+/*********************************************************************************/
+#import <DJISDK/DJISDKManager.h>
+
+/*********************************************************************************/
+#pragma mark - Products
+/*********************************************************************************/
+#import <DJISDK/DJIAircraft.h>
+#import <DJISDK/DJIHandheld.h>
+
+/*********************************************************************************/
+#pragma mark - Components
+/*********************************************************************************/
+//-----------------------------------------------------------------
+#pragma mark FlightController
+//-----------------------------------------------------------------
+#import <DJISDK/DJIFlightController.h>
+#import <DJISDK/DJIFlightControllerCurrentState.h>
+#import <DJISDK/DJIFlightLimitation.h>
+#import <DJISDK/DJILandingGear.h>
+#import <DJISDK/DJICompass.h>
+#import <DJISDK/DJIIntelligentFlightAssistant.h>
+#import <DJISDK/DJIIMUState.h>
+
+//-----------------------------------------------------------------
+#pragma mark RemoteController
+//-----------------------------------------------------------------
+#import <DJISDK/DJIRemoteController.h>
+
+//-----------------------------------------------------------------
+#pragma mark Camera
+//-----------------------------------------------------------------
 #import <DJISDK/DJICamera.h>
-#import <DJISDK/DJIPhantomCamera.h>
-#import <DJISDK/DJIInspireCamera.h>
-#import <DJISDK/DJIPhantom3ProCamera.h>
-#import <DJISDK/DJIPhantom3AdvancedCamera.h>
-#import <DJISDK/DJICameraSDCardInfo.h>
-#import <DJISDK/DJICameraSystemState.h>
 #import <DJISDK/DJICameraSettingsDef.h>
 #import <DJISDK/DJICameraPlaybackState.h>
-#import <DJISDK/DJISDCardOperation.h>
+#import <DJISDK/DJICameraSystemState.h>
+#import <DJISDK/DJICameraLensState.h>
+#import <DJISDK/DJICameraSDCardState.h>
+#import <DJISDK/DJICameraSSDState.h>
+#import <DJISDK/DJICameraParameters.h>
+#import <DJISDK/DJIMediaManager.h>
 #import <DJISDK/DJIMedia.h>
+#import <DJISDK/DJIPlaybackManager.h>
 
-//Battery
-#import <DJISDK/DJIBattery.h>
-#import <DJISDK/DJIInspireBattery.h>
-#import <DJISDK/DJIPhantom3ProBattery.h>
-#import <DJISDK/DJIPhantom3AdvancedBattery.h>
-
-//Gimbal
+//-----------------------------------------------------------------
+#pragma mark Gimbal
+//-----------------------------------------------------------------
 #import <DJISDK/DJIGimbal.h>
-#import <DJISDK/DJIInspireGimbal.h>
-#import <DJISDK/DJIPhantom3ProGimbal.h>
-#import <DJISDK/DJIPhantom3AdvancedGimbal.h>
-#import <DJISDK/DJIGimbalCapacity.h>
 
-//Main Controller
-#import <DJISDK/DJIMainController.h>
-#import <DJISDK/DJIMainControllerDef.h>
-#import <DJISDK/DJIFlightLimitation.h>
-#import <DJISDK/DJIPhantomMainController.h>
-#import <DJISDK/DJIInspireMainController.h>
-#import <DJISDK/DJIPhantom3ProMainController.h>
-#import <DJISDK/DJIPhantom3AdvancedMainController.h>
-#import <DJISDK/DJIMCSystemState.h>
-#import <DJISDK/DJIMCLandingGearState.h>
-#import <DJISDK/DJIMCSmartGoHome.h>
-#import <DJISDK/DJICompass.h>
+//-----------------------------------------------------------------
+#pragma mark Battery
+//-----------------------------------------------------------------
+#import <DJISDK/DJIBattery.h>
 
-//Navigation
-#import <DJISDK/DJIGroundStation.h>
-#import <DJISDK/DJIGroundStationFlyingInfo.h>
-#import <DJISDK/DJIGroundStationTask.h>
-#import <DJISDK/DJIGroundStationWaypoint.h>
-#import <DJISDK/DJINavigation.h>
-#import <DJISDK/DJIFlightControl.h>
-#import <DJISDK/DJIHotPointMission.h>
+//-----------------------------------------------------------------
+#pragma mark AirLink
+//-----------------------------------------------------------------
+#import <DJISDK/DJIAirLink.h>
+#import <DJISDK/DJILBAirLink.h>
+#import <DJISDK/DJIWiFiLink.h>
+#import <DJISDK/DJIAuxLink.h>
+#import <DJISDK/DJISignalInformation.h>
+
+//-----------------------------------------------------------------
+#pragma mark Handheld Controller
+//-----------------------------------------------------------------
+#import <DJISDK/DJIHandheldController.h>
+
+/*********************************************************************************/
+#pragma mark - Abstract Classes
+/*********************************************************************************/
+#import <DJISDK/DJIBaseProduct.h>
+#import <DJISDK/DJIBaseComponent.h>
+
+/*********************************************************************************/
+#pragma mark - Missions
+/*********************************************************************************/
+#import <DJISDK/DJIMissionManager.h>
+#import <DJISDK/DJIMission.h>
+#import <DJISDK/DJIWaypoint.h>
 #import <DJISDK/DJIWaypointMission.h>
+#import <DJISDK/DJIHotPointMission.h>
 #import <DJISDK/DJIFollowMeMission.h>
-#import <DJISDK/DJIIOCMission.h>
+#import <DJISDK/DJICustomMission.h>
+#import <DJISDK/DJIPanoramaMission.h>
+#import <DJISDK/DJITapFlyMission.h>
+#import <DJISDK/DJIActiveTrackMission.h>
 
-//Range Extender
-#import <DJISDK/DJIRangeExtender.h>
+#import <DJISDK/DJIMissionStep.h>
+#import <DJISDK/DJIWaypointStep.h>
+#import <DJISDK/DJIHotpointStep.h>
+#import <DJISDK/DJIFollowMeStep.h>
+#import <DJISDK/DJITakeoffStep.h>
+#import <DJISDK/DJIGoHomeStep.h>
+#import <DJISDK/DJIGoToStep.h>
+#import <DJISDK/DJIRecordVideoStep.h>
+#import <DJISDK/DJIShootPhotoStep.h>
+#import <DJISDK/DJIGimbalAttitudeStep.h>
 
-//Image Transimtter
-#import <DJISDK/DJIImageTransmitter.h>
+/*********************************************************************************/
+#pragma mark - Categories
+/*********************************************************************************/
+#import <DJISDK/NSError+DJISDK.h>
 
-//Remote Controller
-#import <DJISDK/DJIRemoteController.h>
-#import <DJISDK/DJIRemoteControllerDef.h>
-#import <DJISDK/DJIInspireRemoteController.h>
-#import <DJISDK/DJIPhantom3ProRemoteController.h>
-#import <DJISDK/DJIPhantom3AdvancedRemoteController.h>
-
-#import <DJISDK/DJIFirmwareManager.h>
+/*********************************************************************************/
+#pragma mark - Remote Logger
+/*********************************************************************************/
+#import <DJISDK/DJIRemoteLogger.h>

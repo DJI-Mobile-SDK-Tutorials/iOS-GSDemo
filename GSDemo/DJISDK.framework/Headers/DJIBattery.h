@@ -2,120 +2,249 @@
 //  DJIBattery.h
 //  DJISDK
 //
-//  Copyright (c) 2015 DJI. All rights reserved.
+//  Copyright © 2015, DJI. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import <DJISDK/DJIObject.h>
+#import <DJISDK/DJIBaseComponent.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@class DJIBattery;
+
+/*********************************************************************************/
+#pragma mark - DJIBatteryState
+/*********************************************************************************/
 
 /**
- *   DJIBatteryState is used for record the history status of battery. The dji's battery could keep the state in latest 30 days.
+ *  The DJIBatteryState is used to keep track the real-time state of the battery.
  */
 @interface DJIBatteryState : NSObject
+
 /**
- *  Over current in discharge.
+ *  Returns the the total amount of energy, in mAh (milliamp hours), stored in the battery
+ *  when the battery is fully charged. The energy of the battery at full charge changes over time
+ *  as the battery continues to get used. Over time, as the battery continues to be recharged, the
+ *  value of fullChargeEnergy will decrease.
  */
-@property(nonatomic, readonly) BOOL dischargeOverCurrent;
+@property(nonatomic, readonly) NSInteger fullChargeEnergy;
+
 /**
- *  Over heat in discharge.
+ *  Returns the remaining energy stored in the battery in mAh (milliamp hours).
  */
-@property(nonatomic, readonly) BOOL dischargeOverHeat;
+@property(nonatomic, readonly) NSInteger currentEnergy;
+
 /**
- *  Low temperature in discharge.
+ *   Returns the current battery voltage (mV).
  */
-@property(nonatomic, readonly) BOOL dischargeLowTemperature;
+@property(nonatomic, readonly) NSInteger currentVoltage;
+
 /**
- *  Short cut in discharge.
+ *  Returns the real time current draw of the battery (mA). A negative value means the battery is being discharged, and a positive value means it is being charged.
  */
-@property(nonatomic, readonly) BOOL dischargeShortCut;
+@property(nonatomic, readonly) NSInteger currentCurrent;
+
 /**
- *  Self-discharge in storage.
+ *  Returns the percentage of remaining lifetime value of the battery. The range of this
+ *  value is [0 - 100].
  */
-@property(nonatomic, readonly) BOOL selfDischarge;
+@property(nonatomic, readonly) NSInteger lifetimeRemainingPercent;
+
 /**
- *  Cell Under voltage.
+ *  Returns the percentage of battery energy left. The range of this value is [0 - 100].
  */
-@property(nonatomic, readonly) uint8_t underVoltageCellIndex;
+@property(nonatomic, readonly) NSInteger batteryEnergyRemainingPercent;
+
 /**
- *  Damaged cell index.
+ *  Returns the temperature of battery in Centigrade, with a range [-128 to 127].
  */
-@property(nonatomic, readonly) uint8_t damagedCellIndex;
+@property(nonatomic, readonly) NSInteger batteryTemperature;
+
+/**
+ *  Returns the total number of discharges the battery has gone through over its lifetime.
+ *  The total number of discharges includes discharges that happen through normal use and
+ *  discharges that are manually set.
+ */
+@property(nonatomic, readonly) NSInteger numberOfDischarge;
 
 @end
 
+/*********************************************************************************/
+#pragma mark - DJIBatteryWarningInformation
+/*********************************************************************************/
+
 /**
- *  Description The battery cell
+ *  The DJIBatteryWarningInformation is used to keep a record of any unusual status for the battery
+ *  in the past 30 days. For all the properties below, monitor these values frequently to ensure the
+ *  battery's state is normal. If any of the properties below indicate there is an issue with the battery, we
+ *  reccomend notifying the user.
+ *
+ *  NOTE: No automatic action will be taken if any of the properties below return `YES`,
+ *  which is why it is imperative the user is notified of the issue.
+ *
+ *  These states are not supported by Osmo.
+ */
+@interface DJIBatteryWarningInformation : NSObject
+
+/**
+ *  `YES` if the battery should be discharged due to a current overload.
+ */
+@property(nonatomic, readonly) BOOL dischargeDueToCurrentOverload;
+
+/**
+ *  `YES` if the battery should be discharged due to being over heated.
+ */
+@property(nonatomic, readonly) BOOL dischargeDueToOverHeating;
+
+/**
+ *  `YES` if the battery should be discharged due to a low temperature.
+ */
+@property(nonatomic, readonly) BOOL dischargeDueToLowTemperature;
+
+/**
+ *  `YES` if the battery should be discharged due to being short circuited.
+ */
+@property(nonatomic, readonly) BOOL dischargeDueToShortCircuit;
+
+/**
+ *  `YES` if the battery has been configured to be discharged over a specific
+ *  number of days. Once the battery is fully recharged, the battery will again discharge
+ *  over the number of days set here. This process is cyclical.
+ */
+@property(nonatomic, readonly) BOOL customDischargeEnabled;
+
+/**
+ *  Returns the index at which one of the cells in the battery is below the normal voltage.
+ *  The first cell has an index of 1.
+ *  The Phantom 3 Series have 4 cell batteries. The Inspire series and M100 have
+ *  6 cell batteries.
+ *
+ */
+@property(nonatomic, readonly) uint8_t underVoltageBatteryCellIndex;
+
+/**
+ *  Returns the index at which one of the cells in the battery is damaged. The first cell has an index of 1.
+ *  The Phantom 3 Series have 4 cell batteries. The Inspire series and M100 have
+ *  6 cell batteries.
+ */
+@property(nonatomic, readonly) uint8_t damagedBatteryCellIndex;
+
+@end
+
+/*********************************************************************************/
+#pragma mark - DJIBatteryCell
+/*********************************************************************************/
+
+/**
+ *  Class that contains battery cell voltage data.
  */
 @interface DJIBatteryCell : NSObject
 
 /**
- *  The voltage battery cell.
+ *  Returns the voltage (mV) of the current battery cell.
  */
 @property(nonatomic, readonly) uint16_t voltage;
 
--(id) initWithVolgate:(uint16_t)voltage;
+@end
+
+/*********************************************************************************/
+#pragma mark - DJIBatteryDelegate
+/*********************************************************************************/
+
+/**
+ *  This protocol provides a delegate method for you to update the battery's current state.
+ */
+@protocol DJIBatteryDelegate <NSObject>
+
+@optional
+
+/**
+ *  Updates the battery's current state.
+ *
+ *  @param battery      Battery having an updated state.
+ *  @param batteryState The battery's state.
+ */
+- (void)battery:(DJIBattery *)battery didUpdateState:(DJIBatteryState *)batteryState;
 
 @end
 
-@interface DJIBattery : DJIObject
+/*********************************************************************************/
+#pragma mark - DJIBattery
+/*********************************************************************************/
 
 /**
- *  The battery's design volume (mAh)
+ *  This class manages the battery's information and real-time status of the connected product.
  */
-@property(nonatomic) NSInteger designedVolume;
+@interface DJIBattery : DJIBaseComponent
 
 /**
- *  The battery's full charge volume (mAh)
+ *  Returns the number of battery cells.
  */
-@property(nonatomic) NSInteger fullChargeVolume;
+@property(nonatomic, readonly) NSUInteger numberOfCell;
 
 /**
- *  The current electricity volume of battery (mAh)
+ *  Delegate that receives the updated state pushed by the battery.
  */
-@property(nonatomic) NSInteger currentElectricity;
+@property(nonatomic, weak) id<DJIBatteryDelegate> delegate;
 
 /**
- *  The current voltage of battery (mV)
+ *  `YES` if the battery is a smart battery.
  */
-@property(nonatomic) NSInteger currentVoltage;
+- (BOOL)isSmartBattery;
 
+//-----------------------------------------------------------------
+#pragma mark Get battery properties and status
+//-----------------------------------------------------------------
 /**
- *  The current current of battery (mA), The negative value is indicate that the battery is in discharge
- */
-@property(nonatomic) NSInteger currentCurrent;
-
-/**
- *  Remain life percentage of battery.
- */
-@property(nonatomic) NSInteger remainLifePercent;
-
-/**
- *  Remain power percentage of battery.
- */
-@property(nonatomic) NSInteger remainPowerPercent;
-
-/**
- *  The temperature of battery between -128 to 127 (Centigrade).
- */
-@property(nonatomic) NSInteger batteryTemperature;
-
-/**
- *  The total number of discharge of battery.
- */
-@property(nonatomic) NSInteger numberOfDischarge;
-
-/**
- *  Get battery's firmware version
+ *  Gets the battery's history. The DJI battery keeps the history for
+ *  the past 30 days. The `history` variable in the block stores objects of type
+ *  `DJIBatteryWarningInformation`. Call the `isSmartBattery` method before using this method.
  *
- *  @param block Remote execute result callback.
+ *  Not supported by Osmo.
+ *
+ *  @param block Remote execution result callback block.
  */
--(void) getVersionWithResult:(void(^)(NSString* version, DJIError* error))block;
+- (void)getWarningInformationRecordsWithCompletion:(void (^)(NSArray<DJIBatteryWarningInformation *> *history, NSError *_Nullable error))block;
 
 /**
- *  Update battery's information once, if Succeeded, the property value of battery will be update.
+ *  Gets the battery's current state, which is one of seven battery states that
+ *  can be found at the top of DJIBattery.h. Call the `isSmartBattery` method before using this method.
+ *  Not supported by Osmo.
  *
- *  @param block Remote exeucte result
+ *  @param block Remote execution result callback block.
  */
--(void) updateBatteryInfo:(DJIExecuteResultBlock)block;
+- (void)getCurrentWarningInformationWithCompletion:(void (^)(DJIBatteryWarningInformation *state, NSError *_Nullable error))block;
+
+/**
+ *  Gets the battery's cell voltages. The `cellArray` variable stores `DJIBatteryCell` objects. Since the Inspire 1 battery has 6 cells, `cellArray`
+ *  has 6 objects: one for each battery cell.
+ *
+ *  @param block Remote execution result callback block.
+ */
+- (void)getCellVoltagesWithCompletion:(void (^)(NSArray<DJIBatteryCell *> *cellArray, NSError *_Nullable error))block;
+
+//-----------------------------------------------------------------
+#pragma mark Battery self discharge
+//-----------------------------------------------------------------
+/**
+ *  Sets the battery's custom self-discharge configuration in the range of [1, 10] days.
+ *  For example, if the value for `day` is `10`, the battery will discharge over
+ *  the course of 10 days. Call the `isSmartBattery` method before using this method.
+ *  Not supported by Osmo.
+ *
+ *  @param day   Day for self-discharge
+ *  @param block Remote execution result error block.
+ */
+- (void)setSelfDischargeDay:(uint8_t)day withCompletion:(DJICompletionBlock)block;
+
+/**
+ *  Gets the battery's custom self-discharge configuration. Call the `isSmartBattery` method before using this method.
+ *  Not supported by Osmo.
+ *
+ *  @param result Remote execution result error block.
+ */
+- (void)getSelfDischargeDayWithCompletion:(void (^)(uint8_t day, NSError *_Nullable error))block;
 
 @end
+
+NS_ASSUME_NONNULL_END

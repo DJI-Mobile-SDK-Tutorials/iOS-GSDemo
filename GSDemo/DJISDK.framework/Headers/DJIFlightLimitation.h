@@ -2,69 +2,72 @@
 //  DJIFlightLimitation.h
 //  DJISDK
 //
-//  Copyright (c) 2015年 DJI. All rights reserved.
+//  Copyright © 2015, DJI. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import <DJISDK/DJIObject.h>
+#import <DJISDK/DJIBaseComponent.h>
 
-@class DJIError;
-
-@protocol DJIFlightLimitation <NSObject>
+NS_ASSUME_NONNULL_BEGIN
 
 /**
- *  Whether or not the aircraft has reached max flight height.
- */
-@property(nonatomic, readonly) BOOL isReachedMaxFlightHeight;
-
-/**
- *  Whether or not the aricraft has reached max flight radius.
- */
-@property(nonatomic, readonly) BOOL isReachedMaxFlightRadius;
-
-/**
- *  Set max flight height limitation for aircraft. maxHeight value should be in range [20, 500] m
  *
- *  @param maxHeight Maximum height can be fly for aircraft
- *  @param block     Remote execute result callback
+ *  This class contains the flight status of the aircraft related to the flight limitation, and provides methods to configure the flight limitation.
  */
--(void) setMaxFlightHeight:(float)maxHeight withResult:(DJIExecuteResultBlock)block;
+@interface DJIFlightLimitation : NSObject
 
 /**
- *  Get max flight heigh limitation from aircraft
- *
- *  @param block Remote execute result callback
+ *  `YES` if the aircraft has reached the maximum flight height.
  */
--(void) getMaxFlightHeightWithResult:(void(^)(float height, DJIError* error))block;
+@property(nonatomic, readonly) BOOL hasReachedMaxFlightHeight;
 
 /**
- *  Set max flight radius limitation for aricraft. the radius is calculated from the home point. maxRadius value should be in range [15, 500] m
- *
- *  @param radius Maximum flight radius can be fly for aircraft.
- *  @param block  Remote execute result callback
+ *  `YES` if the aircraft has reached the maximum flight radius.
  */
--(void) setMaxFlightRadius:(float)maxRadius withResult:(DJIExecuteResultBlock)block;
+@property(nonatomic, readonly) BOOL hasReachedMaxFlightRadius;
 
 /**
- *  Get max flight radius limitation from aircraft.
+ *  Sets the maximum flight height limitation for the aircraft. The `maxHeight` value must be in the range [20, 500] m.
  *
- *  @param block Remote execute result block
+ *  @param maxHeight   Maximum height for the aircraft.
+ *  @param completion  Completion block.
  */
--(void) getMaxFlightRadiusWithResult:(void(^)(float radius, DJIError*))block;
+- (void)setMaxFlightHeight:(float)maxHeight withCompletion:(DJICompletionBlock)completion;
 
 /**
- *  Set max flight radius limitation enable. if enable is No, then no max flight radius limitation.
+ *  Gets the maximum flight height limitation from the aircraft.
  *
- *  @param enable Max flight radius limitation enable.
- *  @param block  Remote execute result callback
  */
--(void) setMaxFlightRadiusLimitationEnable:(BOOL)enable withResult:(DJIExecuteResultBlock)block;
+- (void)getMaxFlightHeightWithCompletion:(void (^)(float height, NSError *_Nullable error))completion;
 
 /**
- *  Get max flight radius limitation enable.
+ *  Sets the maximum flight radius limitation for the aircraft. The radius is calculated from the home point. The `maxRadius` value must be in the range [15, 500] m.
  *
- *  @param block Remote execute result callback
+ *  @param radius Maximum flight radius for the aircraft.
+ *  @param completion  Completion block.
  */
--(void) getMaxFlightRadiusLimitationEnableWithResult:(void (^)(BOOL, DJIError *))block;
+- (void)setMaxFlightRadius:(float)maxRadius withCompletion:(DJICompletionBlock)completion;
+
+/**
+ *  Gets the maximum flight radius limitation from the aircraft.
+ *
+ */
+- (void)getMaxFlightRadiusWithCompletion:(void (^)(float radius, NSError *_Nullable error))completion;
+
+/**
+ *  Sets whether the maximum flight radius limitation is enabled. If `enabled` is `NO`, there is no maximum flight radius limitation.
+ *
+ *  @param enabled      Maximum flight radius limitation is enabled.
+ *  @param completion   Completion block.
+ */
+- (void)setMaxFlightRadiusLimitationEnabled:(BOOL)enabled withCompletion:(DJICompletionBlock)completion;
+
+/**
+ *  Determines whether the maximum flight radius limitation is enabled.
+ *
+ */
+- (void)getMaxFlightRadiusLimitationEnabledWithCompletion:(void (^)(BOOL enabled, NSError *_Nullable error))completion;
 
 @end
+
+NS_ASSUME_NONNULL_END

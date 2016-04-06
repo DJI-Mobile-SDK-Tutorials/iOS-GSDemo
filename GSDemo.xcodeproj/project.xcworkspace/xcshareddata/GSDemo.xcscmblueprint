@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "1C27C03A972FDE043626CF8F280C89E97069D293",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "1C27C03A972FDE043626CF8F280C89E97069D293" : 0,
+    "F242303504B8CDD3CE213C5B3FFB052B596793AF" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "92D76091-C7C6-4DDD-AD58-9CB4FDF3B3E8",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "1C27C03A972FDE043626CF8F280C89E97069D293" : "iOS-GSDemo\/",
+    "F242303504B8CDD3CE213C5B3FFB052B596793AF" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "GSDemo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "GSDemo.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:DJI-Mobile-SDK\/iOS-GSDemo.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1C27C03A972FDE043626CF8F280C89E97069D293"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/oliver.ou@us003.fly-access.com\/scm\/msdk\/documentation.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F242303504B8CDD3CE213C5B3FFB052B596793AF"
+    }
+  ]
+}
