@@ -1130,7 +1130,7 @@ For this demo, we will assume that the parameters of each waypoint being added t
 
 Now, let's create a new ViewController that will let the user to set the parameters of waypoints. Go to Xcode’s project navigator, right click on the **GSDemo** folder, select **New File...**, set its subclass to UIViewController, named it "DJIWaypointConfigViewController", and make sure "Also create XIB file" is selected. Next, open the DJIWaypointConfigViewController.xib file and implement the UI, as you see it below:
 
-![wayPointConfig](./Images/wayPointConfigureVC.png)
+![wayPointConfig](./Images/wayPointConfigureView.png)
 
 In the Waypoint Configuration ViewController, we use a UITextField to let the user set the **altitude** property of a DJIWaypoint object. Then, we use two UITextField to let the user set the **maxFlightSpeed** and **autoFlightSpeed** properties of DJIWaypointMission. Next, there are two UISegmentedControls to configure the **finishedAction** property and the **headingMode** property of a DJIWaypointMission object. 
 

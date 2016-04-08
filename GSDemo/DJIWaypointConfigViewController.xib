@@ -76,16 +76,16 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="A3Y-CT-OuG">
-                    <rect key="frame" x="24" y="146" width="360" height="29"/>
+                    <rect key="frame" x="5" y="146" width="390" height="29"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="28" id="1k4-J2-57b"/>
                     </constraints>
                     <segments>
                         <segment title="None"/>
                         <segment title="GoHome"/>
-                        <segment title="Landing"/>
+                        <segment title="AutoLand"/>
                         <segment title="BackTo 1st"/>
-                        <segment title="Infinite"/>
+                        <segment title="UntilStop"/>
                     </segments>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </segmentedControl>
@@ -162,14 +162,14 @@
                 <constraint firstItem="aop-RK-6dR" firstAttribute="leading" secondItem="sB6-JT-tfW" secondAttribute="trailing" constant="9" id="7Ge-3o-tdo"/>
                 <constraint firstItem="Ous-h6-Nvz" firstAttribute="baseline" secondItem="Rss-d0-fyH" secondAttribute="firstBaseline" id="Bt1-sO-NKU"/>
                 <constraint firstItem="uL9-y3-Xyd" firstAttribute="leading" secondItem="zu1-ci-Ytl" secondAttribute="leading" constant="82" id="CPb-Ne-acH"/>
-                <constraint firstAttribute="trailing" secondItem="A3Y-CT-OuG" secondAttribute="trailing" constant="16" id="DFy-OB-p21"/>
+                <constraint firstAttribute="trailing" secondItem="A3Y-CT-OuG" secondAttribute="trailing" constant="5" id="DFy-OB-p21"/>
                 <constraint firstItem="n1U-gL-nZO" firstAttribute="top" secondItem="2hy-rp-VTm" secondAttribute="bottom" constant="12" id="ExN-5k-SpT"/>
                 <constraint firstItem="51e-fJ-29r" firstAttribute="leading" secondItem="zu1-ci-Ytl" secondAttribute="leading" constant="23" id="GrU-a3-e3e"/>
                 <constraint firstItem="n1U-gL-nZO" firstAttribute="firstBaseline" secondItem="51e-fJ-29r" secondAttribute="firstBaseline" id="I7R-TG-tRF"/>
                 <constraint firstItem="Ous-h6-Nvz" firstAttribute="leading" secondItem="zu1-ci-Ytl" secondAttribute="leading" id="Ndc-EJ-K3B"/>
                 <constraint firstItem="lp2-EL-q38" firstAttribute="leading" secondItem="6g8-xY-pXb" secondAttribute="leading" id="Nu8-DT-HMD"/>
                 <constraint firstItem="n1U-gL-nZO" firstAttribute="leading" secondItem="uL9-y3-Xyd" secondAttribute="trailing" constant="11" id="Q4U-H4-jbD"/>
-                <constraint firstItem="XAv-6q-m7L" firstAttribute="trailing" secondItem="A3Y-CT-OuG" secondAttribute="trailing" id="RJd-CG-yRA"/>
+                <constraint firstItem="XAv-6q-m7L" firstAttribute="trailing" secondItem="A3Y-CT-OuG" secondAttribute="trailing" constant="-11" id="RJd-CG-yRA"/>
                 <constraint firstItem="XAv-6q-m7L" firstAttribute="top" secondItem="lp2-EL-q38" secondAttribute="bottom" constant="8" symbolic="YES" id="UGA-yE-8e1"/>
                 <constraint firstItem="2hy-rp-VTm" firstAttribute="top" secondItem="zu1-ci-Ytl" secondAttribute="top" constant="5" id="VfP-PE-Ij9"/>
                 <constraint firstItem="51e-fJ-29r" firstAttribute="top" secondItem="zu1-ci-Ytl" secondAttribute="top" constant="42" id="X1Z-8Y-bJ0"/>
@@ -177,7 +177,7 @@
                 <constraint firstItem="A3Y-CT-OuG" firstAttribute="top" secondItem="UZv-T1-PqT" secondAttribute="bottom" constant="78" id="ZMk-BE-38x"/>
                 <constraint firstItem="Ous-h6-Nvz" firstAttribute="top" secondItem="XAv-6q-m7L" secondAttribute="bottom" constant="18" id="bFh-Hi-FBh"/>
                 <constraint firstItem="aop-RK-6dR" firstAttribute="top" secondItem="uL9-y3-Xyd" secondAttribute="bottom" constant="9" id="d71-12-SHZ"/>
-                <constraint firstItem="A3Y-CT-OuG" firstAttribute="leading" secondItem="zu1-ci-Ytl" secondAttribute="leading" constant="24" id="dxD-t2-FEm"/>
+                <constraint firstItem="A3Y-CT-OuG" firstAttribute="leading" secondItem="zu1-ci-Ytl" secondAttribute="leading" constant="5" id="dxD-t2-FEm"/>
                 <constraint firstItem="6g8-xY-pXb" firstAttribute="top" secondItem="sB6-JT-tfW" secondAttribute="bottom" constant="13" id="fBz-MP-Fo3"/>
                 <constraint firstItem="Rss-d0-fyH" firstAttribute="leading" secondItem="Ous-h6-Nvz" secondAttribute="trailing" constant="1" id="j3o-fa-WMR"/>
                 <constraint firstItem="UZv-T1-PqT" firstAttribute="bottom" secondItem="uL9-y3-Xyd" secondAttribute="bottom" id="j88-TL-ovX"/>
@@ -186,7 +186,7 @@
                 <constraint firstItem="2hy-rp-VTm" firstAttribute="leading" secondItem="zu1-ci-Ytl" secondAttribute="leading" constant="85" id="pGC-Ni-IKL"/>
                 <constraint firstItem="UZv-T1-PqT" firstAttribute="trailing" secondItem="zu1-ci-Ytl" secondAttribute="trailingMargin" constant="1" id="qoq-Bc-vaa"/>
                 <constraint firstItem="51e-fJ-29r" firstAttribute="leading" secondItem="sB6-JT-tfW" secondAttribute="leading" id="vGr-uU-Lyg"/>
-                <constraint firstItem="XAv-6q-m7L" firstAttribute="leading" secondItem="A3Y-CT-OuG" secondAttribute="leading" id="vZ4-oj-w5A"/>
+                <constraint firstItem="XAv-6q-m7L" firstAttribute="leading" secondItem="A3Y-CT-OuG" secondAttribute="leading" constant="19" id="vZ4-oj-w5A"/>
                 <constraint firstAttribute="bottom" secondItem="Ous-h6-Nvz" secondAttribute="bottom" id="wct-NJ-rZd"/>
                 <constraint firstItem="51e-fJ-29r" firstAttribute="baseline" secondItem="n1U-gL-nZO" secondAttribute="baseline" id="yCf-Wm-bEY"/>
                 <constraint firstItem="lp2-EL-q38" firstAttribute="top" secondItem="A3Y-CT-OuG" secondAttribute="bottom" constant="12" id="z0g-R4-mUv"/>
@@ -194,7 +194,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="90" y="167.5"/>
+            <point key="canvasLocation" x="-148" y="186.5"/>
         </view>
     </objects>
 </document>
