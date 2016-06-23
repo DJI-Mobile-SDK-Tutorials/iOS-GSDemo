@@ -338,7 +338,7 @@
 {
     if ([annotation isKindOfClass:[MKPointAnnotation class]]) {
         MKPinAnnotationView* pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Pin_Annotation"];
-        pinView.pinColor = MKPinAnnotationColorPurple;
+        pinView.pinTintColor = [UIColor purpleColor];
         return pinView;
         
     }else if ([annotation isKindOfClass:[DJIAircraftAnnotation class]])
