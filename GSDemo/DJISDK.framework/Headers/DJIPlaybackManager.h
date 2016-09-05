@@ -17,17 +17,17 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  Block invoked when preparing a file for download.
  */
-typedef void (^DJIFileDownloadPreparingBlock)(NSString *_Nullable fileName, DJIDownloadFileType fileType, NSUInteger fileSize, BOOL *skip);
+typedef void (^_Nullable DJIFileDownloadPreparingBlock)(NSString *_Nullable fileName, DJIDownloadFileType fileType, NSUInteger fileSize, BOOL *skip);
 
 /**
  *  Block invoked when a file is downloading.
  */
-typedef void (^DJIFileDownloadingBlock)(NSData *_Nullable data, NSError *_Nullable error);
+typedef void (^_Nullable DJIFileDownloadingBlock)(NSData *_Nullable data, NSError *_Nullable error);
 
 /**
  *  Block invoked after a file has been downloaded.
  */
-typedef void (^DJIFileDownloadCompletionBlock)();
+typedef void (^_Nullable DJIFileDownloadCompletionBlock)();
 
 /*********************************************************************************/
 #pragma mark - DJIPlaybackDelegate
@@ -45,7 +45,7 @@ typedef void (^DJIFileDownloadCompletionBlock)();
  *
  *  @param playbackState The camera's playback state.
  */
-- (void)playbackManager:(DJIPlaybackManager *)playbackManager didUpdatePlaybackState:(DJICameraPlaybackState *)playbackState;
+- (void)playbackManager:(DJIPlaybackManager *_Nonnull)playbackManager didUpdatePlaybackState:(DJICameraPlaybackState *_Nonnull)playbackState;
 
 @end
 
@@ -107,15 +107,35 @@ typedef void (^DJIFileDownloadCompletionBlock)();
 - (void)deleteAllSelectedFiles;
 
 /**
- *  Downloads the selected files. When this method is called, the `dataBlock` is called continuously until all the data is downloaded.
- *  The prepare and completion blocks are called once for each file being downloaded. In the `prepareBlock`, you can get the forthcoming file's information, including the file name, file size, etc. If an error occurs, the `overallCompletionBlock` will be called with an error returned. If the entire download process finishes successfuly, `overallCompletionBlock` will be called without any errors.
+ *  Downloads the selected files. When this method is called, the `dataBlock` is
+ *  called continuously until all the data is downloaded.
+ *  The prepare and completion blocks are called once for each file being
+ *  downloaded. In the `prepareBlock`, you can get the forthcoming file's
+ *  information, including the file name, file size, etc. If an error occurs,
+ *  the `overallCompletionBlock` will be called with an error returned. If the
+ *  entire download process finishes successfully, `overallCompletionBlock` will
+ *  be called without any errors.
  *
  *  @param prepareBlock         Callback to prepare each file for download.
- *  @param dataBlock            Callback while a file is downloading. The dataBlock can be called multiple times for a file. The error argument in `DJIFileDownloadingBlock` is not used and should be ignored.
+ *  @param dataBlock            Callback while a file is downloading. The
+ *                              dataBlock can be called multiple times for a file.
+ *                              The error argument in `DJIFileDownloadingBlock` 
+ *                              is not used and should be ignored.
  *  @param fileCompletionBlock  Callback after each file have been downloaded.
  *  @param finishBlock          Callback after the downloading is finished.
  */
-- (void)downloadSelectedFilesWithPreparation:(DJIFileDownloadPreparingBlock)prepareBlock process:(DJIFileDownloadingBlock)dataBlock fileCompletion:(DJIFileDownloadCompletionBlock)fileCompletionBlock overallCompletion:(DJICompletionBlock)overallCompletionBlock;
+- (void)downloadSelectedFilesWithPreparation:(nullable DJIFileDownloadPreparingBlock)prepareBlock
+                                     process:(nullable DJIFileDownloadingBlock)dataBlock
+                              fileCompletion:(nullable DJIFileDownloadCompletionBlock)fileCompletionBlock
+                           overallCompletion:(nullable DJICompletionBlock)overallCompletionBlock;
+
+/**
+ * Cancel current file download.
+ *
+ * @param block Callback after the operation finished.
+ */
+
+- (void)stopDownloadingFilesWithCompletion:(nullable DJICompletionBlock)block;
 
 /**
  *  Enables the user to preview multiple files when the camera is in Playback mode.
