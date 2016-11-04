@@ -7,13 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0203E5881C9C0C7C00A69BCF /* DJISDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A4E86B9C1B4A56D300F204DA /* DJISDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		080399469B2DBEA6F0789E6D /* libPods-GSDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD01B4A59AB3761414068C5E /* libPods-GSDemo.a */; };
 		A402A0701B4BC22400129605 /* DJIRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A402A06F1B4BC22400129605 /* DJIRootViewController.m */; };
 		A402A0741B4BC43800129605 /* DJIMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = A402A0721B4BC43800129605 /* DJIMapController.m */; };
 		A402A07A1B4BDAE400129605 /* DJIAircraftAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A402A0771B4BDAE400129605 /* DJIAircraftAnnotation.m */; };
 		A402A07B1B4BDAE400129605 /* DJIAircraftAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = A402A0791B4BDAE400129605 /* DJIAircraftAnnotationView.m */; };
-		A4507F201CB5054A0037861C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A4507F1F1CB5054A0037861C /* libz.tbd */; };
-		A4507F221CB505600037861C /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A4507F211CB505600037861C /* libstdc++.6.0.9.tbd */; };
 		A4507F291CB506D40037861C /* DJIGSButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4507F241CB506D40037861C /* DJIGSButtonViewController.m */; };
 		A4507F2A1CB506D40037861C /* DJIGSButtonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4507F251CB506D40037861C /* DJIGSButtonViewController.xib */; };
 		A4507F2B1CB506D40037861C /* DJIWaypointConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4507F271CB506D40037861C /* DJIWaypointConfigViewController.m */; };
@@ -25,7 +23,6 @@
 		A4E86B831B4A374300F204DA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4E86B821B4A374300F204DA /* Images.xcassets */; };
 		A4E86B861B4A374300F204DA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E86B841B4A374300F204DA /* LaunchScreen.xib */; };
 		A4E86B921B4A374300F204DA /* GSDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E86B911B4A374300F204DA /* GSDemoTests.m */; };
-		A4E86B9D1B4A56D300F204DA /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E86B9C1B4A56D300F204DA /* DJISDK.framework */; };
 		A4F9574C1B4ADD570017733D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F9574B1B4ADD570017733D /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,21 +36,9 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		0203E5871C9C0C7500A69BCF /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				0203E5881C9C0C7C00A69BCF /* DJISDK.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		0203E5861C9C0B5F00A69BCF /* GSDemo-pch.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GSDemo-pch.pch"; sourceTree = "<group>"; };
+		5B0CAE4A21C1AEFA08AF5AD5 /* Pods-GSDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GSDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-GSDemo/Pods-GSDemo.release.xcconfig"; sourceTree = "<group>"; };
 		A402A06E1B4BC22400129605 /* DJIRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJIRootViewController.h; sourceTree = "<group>"; };
 		A402A06F1B4BC22400129605 /* DJIRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJIRootViewController.m; sourceTree = "<group>"; };
 		A402A0711B4BC43800129605 /* DJIMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJIMapController.h; sourceTree = "<group>"; };
@@ -63,8 +48,6 @@
 		A402A0781B4BDAE400129605 /* DJIAircraftAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJIAircraftAnnotationView.h; sourceTree = "<group>"; };
 		A402A0791B4BDAE400129605 /* DJIAircraftAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJIAircraftAnnotationView.m; sourceTree = "<group>"; };
 		A44305471DA88CF3009C1370 /* GSDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GSDemo.entitlements; sourceTree = "<group>"; };
-		A4507F1F1CB5054A0037861C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		A4507F211CB505600037861C /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		A4507F231CB506D40037861C /* DJIGSButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJIGSButtonViewController.h; sourceTree = "<group>"; };
 		A4507F241CB506D40037861C /* DJIGSButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJIGSButtonViewController.m; sourceTree = "<group>"; };
 		A4507F251CB506D40037861C /* DJIGSButtonViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DJIGSButtonViewController.xib; sourceTree = "<group>"; };
@@ -84,8 +67,9 @@
 		A4E86B8B1B4A374300F204DA /* GSDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GSDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E86B901B4A374300F204DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4E86B911B4A374300F204DA /* GSDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GSDemoTests.m; sourceTree = "<group>"; };
-		A4E86B9C1B4A56D300F204DA /* DJISDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DJISDK.framework; sourceTree = "<group>"; };
 		A4F9574B1B4ADD570017733D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		BD01B4A59AB3761414068C5E /* libPods-GSDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GSDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D28B91E9DC596A93C22AC0F1 /* Pods-GSDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GSDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GSDemo/Pods-GSDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,10 +77,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4507F221CB505600037861C /* libstdc++.6.0.9.tbd in Frameworks */,
-				A4507F201CB5054A0037861C /* libz.tbd in Frameworks */,
 				A4F9574C1B4ADD570017733D /* MapKit.framework in Frameworks */,
-				A4E86B9D1B4A56D300F204DA /* DJISDK.framework in Frameworks */,
+				080399469B2DBEA6F0789E6D /* libPods-GSDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +92,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		45EC2DD14ECB83295E2E51A5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D28B91E9DC596A93C22AC0F1 /* Pods-GSDemo.debug.xcconfig */,
+				5B0CAE4A21C1AEFA08AF5AD5 /* Pods-GSDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A4507F2D1CB506F20037861C /* DemoUtility */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +117,7 @@
 				A4E86B9B1B4A56C600F204DA /* Frameworks */,
 				A4E86B8E1B4A374300F204DA /* GSDemoTests */,
 				A4E86B731B4A374300F204DA /* Products */,
+				45EC2DD14ECB83295E2E51A5 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -197,10 +189,8 @@
 		A4E86B9B1B4A56C600F204DA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A4507F211CB505600037861C /* libstdc++.6.0.9.tbd */,
-				A4507F1F1CB5054A0037861C /* libz.tbd */,
 				A4F9574B1B4ADD570017733D /* MapKit.framework */,
-				A4E86B9C1B4A56D300F204DA /* DJISDK.framework */,
+				BD01B4A59AB3761414068C5E /* libPods-GSDemo.a */,
 			);
 			name = Frameworks;
 			path = GSDemo;
@@ -213,10 +203,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A4E86B951B4A374300F204DA /* Build configuration list for PBXNativeTarget "GSDemo" */;
 			buildPhases = (
+				7C397C450D07EB3410E544D4 /* [CP] Check Pods Manifest.lock */,
 				A4E86B6E1B4A374300F204DA /* Sources */,
 				A4E86B6F1B4A374300F204DA /* Frameworks */,
 				A4E86B701B4A374300F204DA /* Resources */,
-				0203E5871C9C0C7500A69BCF /* CopyFiles */,
+				77FBCBEDAFAB5EF6E97903FA /* [CP] Embed Pods Frameworks */,
+				6EE988EA46BB0D1D54711519 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -308,6 +300,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6EE988EA46BB0D1D54711519 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GSDemo/Pods-GSDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		77FBCBEDAFAB5EF6E97903FA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GSDemo/Pods-GSDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7C397C450D07EB3410E544D4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A4E86B6E1B4A374300F204DA /* Sources */ = {
@@ -448,15 +488,13 @@
 		};
 		A4E86B961B4A374300F204DA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D28B91E9DC596A93C22AC0F1 /* Pods-GSDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GSDemo/GSDemo.entitlements;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/GSDemo",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GSDemo/GSDemo-pch.pch";
 				INFOPLIST_FILE = GSDemo/Info.plist;
@@ -469,15 +507,13 @@
 		};
 		A4E86B971B4A374300F204DA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B0CAE4A21C1AEFA08AF5AD5 /* Pods-GSDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GSDemo/GSDemo.entitlements;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/GSDemo",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GSDemo/GSDemo-pch.pch";
 				INFOPLIST_FILE = GSDemo/Info.plist;
