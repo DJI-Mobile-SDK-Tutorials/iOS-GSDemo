@@ -350,10 +350,9 @@
 
 #pragma mark DJIFlightControllerDelegate
 
-- (void)flightController:(DJIFlightController *)fc didUpdateSystemState:(DJIFlightControllerCurrentState *)state
+- (void)flightController:(DJIFlightController *)fc didUpdateState:(DJIFlightControllerState *)state
 {
     self.droneLocation = state.aircraftLocation;
-    
     self.modeLabel.text = state.flightModeString;
     self.gpsLabel.text = [NSString stringWithFormat:@"%d", state.satelliteCount];
     self.vsLabel.text = [NSString stringWithFormat:@"%0.1f M/S",state.velocityZ];
@@ -364,5 +363,6 @@
     double radianYaw = RADIAN(state.attitude.yaw);
     [self.mapController updateAircraftHeading:radianYaw];
 }
+
 
 @end
