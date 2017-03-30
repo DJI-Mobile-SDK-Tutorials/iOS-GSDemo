@@ -1,5 +1,7 @@
 # iOS-GSDemo
 
+> **Note: This Sample Project is developed based on iOS SDK v3.5.1, an update version for iOS SDK v4.0 will be published soon.**
+
 ## Introduction
 
 From this demo, you will learn how to implement the DJIWaypoint Mission feature and get familiar with the usages of DJIMissionManager. Also, you will know how to test the Waypoint Mission API with DJI PC Simulator too.
