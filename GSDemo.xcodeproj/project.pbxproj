@@ -22,19 +22,8 @@
 		A4E86B811B4A374300F204DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4E86B7F1B4A374300F204DA /* Main.storyboard */; };
 		A4E86B831B4A374300F204DA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4E86B821B4A374300F204DA /* Images.xcassets */; };
 		A4E86B861B4A374300F204DA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E86B841B4A374300F204DA /* LaunchScreen.xib */; };
-		A4E86B921B4A374300F204DA /* GSDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E86B911B4A374300F204DA /* GSDemoTests.m */; };
 		A4F9574C1B4ADD570017733D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F9574B1B4ADD570017733D /* MapKit.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		A4E86B8C1B4A374300F204DA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A4E86B6A1B4A374300F204DA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A4E86B711B4A374300F204DA;
-			remoteInfo = GSDemo;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0203E5861C9C0B5F00A69BCF /* GSDemo-pch.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GSDemo-pch.pch"; sourceTree = "<group>"; };
@@ -64,7 +53,6 @@
 		A4E86B801B4A374300F204DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A4E86B821B4A374300F204DA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A4E86B851B4A374300F204DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		A4E86B8B1B4A374300F204DA /* GSDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GSDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E86B901B4A374300F204DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4E86B911B4A374300F204DA /* GSDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GSDemoTests.m; sourceTree = "<group>"; };
 		A4F9574B1B4ADD570017733D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -79,13 +67,6 @@
 			files = (
 				A4F9574C1B4ADD570017733D /* MapKit.framework in Frameworks */,
 				080399469B2DBEA6F0789E6D /* libPods-GSDemo.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A4E86B881B4A374300F204DA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,7 +106,6 @@
 			isa = PBXGroup;
 			children = (
 				A4E86B721B4A374300F204DA /* GSDemo.app */,
-				A4E86B8B1B4A374300F204DA /* GSDemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -219,24 +199,6 @@
 			productReference = A4E86B721B4A374300F204DA /* GSDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A4E86B8A1B4A374300F204DA /* GSDemoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A4E86B981B4A374300F204DA /* Build configuration list for PBXNativeTarget "GSDemoTests" */;
-			buildPhases = (
-				A4E86B871B4A374300F204DA /* Sources */,
-				A4E86B881B4A374300F204DA /* Frameworks */,
-				A4E86B891B4A374300F204DA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A4E86B8D1B4A374300F204DA /* PBXTargetDependency */,
-			);
-			name = GSDemoTests;
-			productName = GSDemoTests;
-			productReference = A4E86B8B1B4A374300F204DA /* GSDemoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -248,15 +210,12 @@
 				TargetAttributes = {
 					A4E86B711B4A374300F204DA = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = 7UL3LRJL93;
 						SystemCapabilities = {
 							com.apple.DataProtection = {
 								enabled = 1;
 							};
 						};
-					};
-					A4E86B8A1B4A374300F204DA = {
-						CreatedOnToolsVersion = 6.3;
-						TestTargetID = A4E86B711B4A374300F204DA;
 					};
 				};
 			};
@@ -274,7 +233,6 @@
 			projectRoot = "";
 			targets = (
 				A4E86B711B4A374300F204DA /* GSDemo */,
-				A4E86B8A1B4A374300F204DA /* GSDemoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -289,13 +247,6 @@
 				A4E86B861B4A374300F204DA /* LaunchScreen.xib in Resources */,
 				A4507F2A1CB506D40037861C /* DJIGSButtonViewController.xib in Resources */,
 				A4E86B831B4A374300F204DA /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A4E86B891B4A374300F204DA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,7 +295,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -366,23 +317,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A4E86B871B4A374300F204DA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A4E86B921B4A374300F204DA /* GSDemoTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A4E86B8D1B4A374300F204DA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A4E86B711B4A374300F204DA /* GSDemo */;
-			targetProxy = A4E86B8C1B4A374300F204DA /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A4E86B7F1B4A374300F204DA /* Main.storyboard */ = {
@@ -492,7 +427,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GSDemo/GSDemo.entitlements;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 7UL3LRJL93;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -511,7 +446,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GSDemo/GSDemo.entitlements;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 7UL3LRJL93;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -521,42 +456,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dji.gsdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		A4E86B991B4A374300F204DA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = GSDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GSDemo.app/GSDemo";
-			};
-			name = Debug;
-		};
-		A4E86B9A1B4A374300F204DA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = GSDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GSDemo.app/GSDemo";
 			};
 			name = Release;
 		};
@@ -577,15 +476,6 @@
 			buildConfigurations = (
 				A4E86B961B4A374300F204DA /* Debug */,
 				A4E86B971B4A374300F204DA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A4E86B981B4A374300F204DA /* Build configuration list for PBXNativeTarget "GSDemoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A4E86B991B4A374300F204DA /* Debug */,
-				A4E86B9A1B4A374300F204DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

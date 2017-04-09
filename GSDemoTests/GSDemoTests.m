@@ -2,7 +2,7 @@
 //  GSDemoTests.m
 //  GSDemoTests
 //
-//  Created by OliverOu on 6/7/15.
+//  Created by DJI on 6/7/15.
 //  Copyright (c) 2015 DJI. All rights reserved.
 //
 

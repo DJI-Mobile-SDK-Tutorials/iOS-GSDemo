@@ -2,7 +2,7 @@
 //  DJIMapViewController.h
 //  GSDemo
 //
-//  Created by OliverOu on 7/7/15.
+//  Created by DJI on 7/7/15.
 //  Copyright (c) 2015 DJI. All rights reserved.
 //
 
