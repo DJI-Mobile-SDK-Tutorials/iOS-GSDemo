@@ -2,7 +2,7 @@
 //  DJIWaypointConfigViewController.h
 //  GSDemo
 //
-//  Created by OliverOu on 12/7/15.
+//  Created by DJI on 12/7/15.
 //  Copyright (c) 2015 DJI. All rights reserved.
 //
 

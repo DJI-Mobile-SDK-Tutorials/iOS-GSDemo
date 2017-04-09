@@ -2,7 +2,7 @@
 //  DJIRootViewController.m
 //  GSDemo
 //
-//  Created by OliverOu on 7/7/15.
+//  Created by DJI on 7/7/15.
 //  Copyright (c) 2015 DJI. All rights reserved.
 //
 
@@ -37,8 +37,7 @@
 @property(nonatomic, strong) IBOutlet UILabel* vsLabel;
 @property(nonatomic, strong) IBOutlet UILabel* altitudeLabel;
 
-@property(nonatomic, strong) DJIWaypointMission* waypointMission;
-@property(nonatomic, strong) DJIMissionManager* missionManager;
+@property(nonatomic, strong) DJIMutableWaypointMission* waypointMission;
 @end
 
 @implementation DJIRootViewController
@@ -59,7 +58,6 @@
     [super viewDidLoad];
 
     [self registerApp];
-    self.missionManager = [DJIMissionManager sharedInstance];
     
     [self initUI];
     [self initData];
@@ -115,13 +113,12 @@
 
 -(void) registerApp
 {
-    NSString* appKey = @"Please enter your App Key here.";
-    [DJISDKManager registerApp:appKey withDelegate:self];
+    //Please enter your App key in the info.plist file to register the app.
+    [DJISDKManager registerAppWithDelegate:self];
 }
 
 #pragma mark DJISDKManagerDelegate Methods
-
-- (void)sdkManagerDidRegisterAppWithError:(NSError *_Nullable)error
+- (void)appRegisteredWithError:(NSError *)error
 {
     if (error){
         NSString *registerResult = [NSString stringWithFormat:@"Registration Error:%@", error.description];
@@ -129,25 +126,31 @@
     }
     else{
 #if ENTER_DEBUG_MODE
-        [DJISDKManager enterDebugModeWithDebugId:@"Please Enter Your Debug ID"];
+        [DJISDKManager enableBridgeModeWithBridgeAppIP:@"Please Enter Your Debug ID"];
 #else
         [DJISDKManager startConnectionToProduct];
 #endif
     }
 }
 
-- (void)sdkManagerProductDidChangeFrom:(DJIBaseProduct *_Nullable)oldProduct to:(DJIBaseProduct *_Nullable)newProduct
+- (void)productConnected:(DJIBaseProduct *)product
 {
-    if (newProduct){
+    if (product){
         DJIFlightController* flightController = [DemoUtility fetchFlightController];
         if (flightController) {
             flightController.delegate = self;
         }
+    }else{
+        ShowMessage(@"Product disconnected", nil, nil, @"OK");
     }
-
 }
 
 #pragma mark action Methods
+
+-(DJIWaypointMissionOperator *)missionOperator {
+    return [DJISDKManager missionControl].waypointMissionOperator;
+}
+
 - (void)focusMap
 {
     if (CLLocationCoordinate2DIsValid(self.droneLocation)) {
@@ -204,6 +207,14 @@
     
 }
 
+- (void)showAlertViewWithTitle:(NSString *)title withMessage:(NSString *)message
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 - (void)finishBtnActionInDJIWaypointConfigViewController:(DJIWaypointConfigViewController *)waypointConfigVC
 {
     WeakRef(weakSelf);
@@ -214,32 +225,47 @@
     }];
     
     for (int i = 0; i < self.waypointMission.waypointCount; i++) {
-        DJIWaypoint* waypoint = [self.waypointMission getWaypointAtIndex:i];
+        DJIWaypoint* waypoint = [self.waypointMission waypointAtIndex:i];
         waypoint.altitude = [self.waypointConfigVC.altitudeTextField.text floatValue];
     }
     
     self.waypointMission.maxFlightSpeed = [self.waypointConfigVC.maxFlightSpeedTextField.text floatValue];
     self.waypointMission.autoFlightSpeed = [self.waypointConfigVC.autoFlightSpeedTextField.text floatValue];
     self.waypointMission.headingMode = (DJIWaypointMissionHeadingMode)self.waypointConfigVC.headingSegmentedControl.selectedSegmentIndex;
-    self.waypointMission.finishedAction = (DJIWaypointMissionFinishedAction)self.waypointConfigVC.actionSegmentedControl.selectedSegmentIndex;
+    [self.waypointMission setFinishedAction:(DJIWaypointMissionFinishedAction)self.waypointConfigVC.actionSegmentedControl.selectedSegmentIndex];
 
-    [self.missionManager prepareMission:self.waypointMission withProgress:^(float progress) {
-        //Do something with progress
-    } withCompletion:^(NSError * _Nullable error) {
-        if (error){
-            NSString* prepareError = [NSString stringWithFormat:@"Prepare Mission failed:%@", error.description];
-            ShowMessage(@"", prepareError, nil, @"OK");
-        }else {
-            ShowMessage(@"", @"Prepare Mission Finished", nil, @"OK");
+    [[self missionOperator] loadMission:self.waypointMission];
+    
+    WeakRef(target);
+    
+    [[self missionOperator] addListenerToFinished:self withQueue:dispatch_get_main_queue() andBlock:^(NSError * _Nullable error) {
+        
+        WeakReturn(target);
+        
+        if (error) {
+            [target showAlertViewWithTitle:@"Mission Execution Failed" withMessage:[NSString stringWithFormat:@"%@", error.description]];
+        }
+        else {
+            [target showAlertViewWithTitle:@"Mission Execution Finished" withMessage:nil];
         }
     }];
+
+    [[self missionOperator] uploadMissionWithCompletion:^(NSError * _Nullable error) {
+        if (error){
+            NSString* uploadError = [NSString stringWithFormat:@"Upload Mission failed:%@", error.description];
+            ShowMessage(@"", uploadError, nil, @"OK");
+        }else {
+            ShowMessage(@"", @"Upload Mission Finished", nil, @"OK");
+        }
+    }];
+    
 }
 
 #pragma mark - DJIGSButtonViewController Delegate Methods
 
 - (void)stopBtnActionInGSButtonVC:(DJIGSButtonViewController *)GSBtnVC
 {
-    [self.missionManager stopMissionExecutionWithCompletion:^(NSError * _Nullable error) {
+    [[self missionOperator] stopMissionWithCompletion:^(NSError * _Nullable error) {
         if (error){
             NSString* failedMessage = [NSString stringWithFormat:@"Stop Mission Failed: %@", error.description];
             ShowMessage(@"", failedMessage, nil, @"OK");
@@ -247,7 +273,9 @@
         {
             ShowMessage(@"", @"Stop Mission Finished", nil, @"OK");
         }
+
     }];
+    
 }
 
 - (void)clearBtnActionInGSButtonVC:(DJIGSButtonViewController *)GSBtnVC
@@ -265,7 +293,7 @@
     WeakRef(weakSelf);
     
     NSArray* wayPoints = self.mapController.wayPoints;
-    if (wayPoints == nil || wayPoints.count < DJIWaypointMissionMinimumWaypointCount) {
+    if (wayPoints == nil || wayPoints.count < 2) { //DJIWaypointMissionMinimumWaypointCount is 2.
         ShowMessage(@"No or not enough waypoints for mission", @"", nil, @"OK");
         return;
     }
@@ -279,7 +307,7 @@
         [self.waypointMission removeAllWaypoints];
     }
     else{
-        self.waypointMission = [[DJIWaypointMission alloc] init];
+        self.waypointMission = [[DJIMutableWaypointMission alloc] init];
     }
     
     for (int i = 0; i < wayPoints.count; i++) {
@@ -289,11 +317,12 @@
             [self.waypointMission addWaypoint:waypoint];
         }
     }
+    
 }
 
 - (void)startBtnActionInGSButtonVC:(DJIGSButtonViewController *)GSBtnVC
 {
-    [self.missionManager startMissionExecutionWithCompletion:^(NSError * _Nullable error) {
+    [[self missionOperator] startMissionWithCompletion:^(NSError * _Nullable error) {
         if (error){
             ShowMessage(@"Start Mission Failed", error.description, nil, @"OK");
         }else
@@ -301,6 +330,7 @@
             ShowMessage(@"", @"Mission Started", nil, @"OK");
         }
     }];
+    
 }
 
 - (void)switchToMode:(DJIGSViewMode)mode inGSButtonVC:(DJIGSButtonViewController *)GSBtnVC
@@ -350,12 +380,11 @@
 
 #pragma mark DJIFlightControllerDelegate
 
-- (void)flightController:(DJIFlightController *)fc didUpdateSystemState:(DJIFlightControllerCurrentState *)state
+- (void)flightController:(DJIFlightController *)fc didUpdateState:(DJIFlightControllerState *)state
 {
     self.droneLocation = state.aircraftLocation;
-    
     self.modeLabel.text = state.flightModeString;
-    self.gpsLabel.text = [NSString stringWithFormat:@"%d", state.satelliteCount];
+    self.gpsLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)state.satelliteCount];
     self.vsLabel.text = [NSString stringWithFormat:@"%0.1f M/S",state.velocityZ];
     self.hsLabel.text = [NSString stringWithFormat:@"%0.1f M/S",(sqrtf(state.velocityX*state.velocityX + state.velocityY*state.velocityY))];
     self.altitudeLabel.text = [NSString stringWithFormat:@"%0.1f M",state.altitude];
@@ -364,5 +393,6 @@
     double radianYaw = RADIAN(state.attitude.yaw);
     [self.mapController updateAircraftHeading:radianYaw];
 }
+
 
 @end

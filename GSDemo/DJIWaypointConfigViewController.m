@@ -2,7 +2,7 @@
 //  DJIWaypointConfigViewController.m
 //  GSDemo
 //
-//  Created by OliverOu on 12/7/15.
+//  Created by DJI on 12/7/15.
 //  Copyright (c) 2015 DJI. All rights reserved.
 //
 
@@ -28,7 +28,7 @@
 
 - (void)initUI
 {
-    self.altitudeTextField.text = @"100"; //Set the altitude to 100
+    self.altitudeTextField.text = @"20"; //Set the altitude to 20
     self.autoFlightSpeedTextField.text = @"8"; //Set the autoFlightSpeed to 8
     self.maxFlightSpeedTextField.text = @"10"; //Set the maxFlightSpeed to 10
     [self.actionSegmentedControl setSelectedSegmentIndex:1]; //Set the finishAction to DJIWaypointMissionFinishedGoHome
