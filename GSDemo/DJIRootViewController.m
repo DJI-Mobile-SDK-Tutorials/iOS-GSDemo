@@ -382,7 +382,7 @@
 
 - (void)flightController:(DJIFlightController *)fc didUpdateState:(DJIFlightControllerState *)state
 {
-    self.droneLocation = state.aircraftLocation;
+    self.droneLocation = state.aircraftLocation.coordinate;
     self.modeLabel.text = state.flightModeString;
     self.gpsLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)state.satelliteCount];
     self.vsLabel.text = [NSString stringWithFormat:@"%0.1f M/S",state.velocityZ];
